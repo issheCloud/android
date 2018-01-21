@@ -345,8 +345,8 @@ public class Preferences extends PreferenceActivity
         SharedPreferences appPrefs =
                 PreferenceManager.getDefaultSharedPreferences(getApplicationContext());
 
-        boolean loggerEnabled = getResources().getBoolean(R.bool.logger_enabled) || BuildConfig.DEBUG ||
-                appPrefs.getBoolean(PREFERENCE_EXPERT_MODE, false);
+        boolean loggerEnabled = getResources().getBoolean(R.bool.logger_enabled);
+		// || BuildConfig.DEBUG || appPrefs.getBoolean(PREFERENCE_EXPERT_MODE, false);
         Preference pLogger = findPreference("logger");
         if (pLogger != null) {
             if (loggerEnabled) {
