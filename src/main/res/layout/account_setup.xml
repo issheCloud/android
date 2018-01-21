@@ -105,6 +105,20 @@
             </android.support.design.widget.TextInputLayout>
 
             <ImageButton
+                android:id="@+id/scanBtn"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center_vertical|end"
+                android:layout_marginEnd="@dimen/standard_double_padding"
+                android:layout_marginRight="@dimen/scan_btn_margin_right"
+                android:background="@android:color/transparent"
+                android:contentDescription="@string/test_server_button"
+                android:padding="@dimen/zero"
+                android:scaleType="fitCenter"
+                android:src="@drawable/scan_btn"
+                android:tint="@color/white" />
+
+            <ImageButton
                 android:id="@+id/testServerButton"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"

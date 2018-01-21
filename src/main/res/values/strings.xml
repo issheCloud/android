@@ -758,4 +758,10 @@
     <string name="end_to_end_encryption_unsuccessful">Storing keys was unsuccessful, please try it again!</string>
     <string name="end_to_end_encryption_dialog_close">Close</string>
     <string name="end_to_end_encryption_storing_keys">Storing keys</string>
+    <string name="turn_on_permission_prompts">In Application Settings-Permissions allow MicroCloud to use the camera permissions to use the sweep feature.</string>
+    <string name="turn_on">Open</string>
+    <string name="apply_to_turn_on_camera_permissions">Allows use of the camera.</string>
+    <string name="success_to_obtain_permission">Obtain permission success.</string>
+    <string name="need_permission_prompts">If you do not turn on the camera, you will not be able to use the sweep function normally.</string>
+
 </resources>

@@ -40,15 +40,18 @@
 
 package com.owncloud.android.authentication;
 
+import android.Manifest;
 import android.accounts.Account;
 import android.accounts.AccountManager;
 import android.app.Dialog;
 import android.content.ComponentName;
 import android.content.Context;
+import android.content.DialogInterface;
 import android.content.Intent;
 import android.content.ServiceConnection;
 import android.content.SharedPreferences;
 import android.content.pm.ActivityInfo;
+import android.content.pm.PackageManager;
 import android.graphics.Rect;
 import android.graphics.drawable.Drawable;
 import android.net.Uri;
@@ -58,13 +61,18 @@ import android.os.Bundle;
 import android.os.Handler;
 import android.os.IBinder;
 import android.preference.PreferenceManager;
+import android.provider.Settings;
+import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
 import android.support.design.widget.Snackbar;
 import android.support.design.widget.TextInputLayout;
+import android.support.v4.app.ActivityCompat;
 import android.support.v4.app.DialogFragment;
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentManager;
 import android.support.v4.app.FragmentTransaction;
+import android.support.v4.content.ContextCompat;
+import android.support.v7.app.AlertDialog;
 import android.text.Editable;
 import android.text.InputType;
 import android.text.TextUtils;
@@ -125,7 +133,7 @@ import com.owncloud.android.ui.dialog.SslUntrustedCertDialog.OnSslUntrustedCertL
 import com.owncloud.android.utils.AnalyticsUtils;
 import com.owncloud.android.utils.DisplayUtils;
 import com.owncloud.android.utils.ErrorMessageAdapter;
-
+import com.xys.libzxing.zxing.activity.CaptureActivity;
 import java.io.InputStream;
 import java.net.URLDecoder;
 import java.security.cert.X509Certificate;
@@ -255,6 +263,9 @@ public class AuthenticatorActivity extends AccountAuthenticatorActivity
     private TextInputLayout mPasswordInputLayout;
     private boolean forceOldLoginMethod = false;
 
+    // 要申请的权限
+     private String[] permissions = {Manifest.permission.CAMERA};
+     private AlertDialog dialog;
     /**
      * {@inheritDoc}
      *
@@ -304,6 +315,16 @@ public class AuthenticatorActivity extends AccountAuthenticatorActivity
         /// load user interface
         if (!webViewLoginMethod) {
             setContentView(R.layout.account_setup);
+            // 版本判断。当手机系统大于 23 时，才有必要去判断权限是否获取
+               if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.M) {
+                // 检查该权限是否已经获取
+                    int i = ContextCompat.checkSelfPermission(this, permissions[0]);
+                // 权限是否已经 授权 GRANTED---授权  DINIED---拒绝
+                     if (i != PackageManager.PERMISSION_GRANTED) {
+                    // 如果没有授予该权限，就去提示用户请求
+                         showDialogTipUserRequestPermission();
+                    }
+                }
 
             /// initialize general UI elements
             initOverallUi();
@@ -324,6 +345,25 @@ public class AuthenticatorActivity extends AccountAuthenticatorActivity
                 }
             });
 
+            findViewById(R.id.scanBtn).setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View v) {
+                    // 版本判断。当手机系统大于 23 时，才有必要去判断权限是否获取
+                    if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.M) {
+                        // 检查该权限是否已经获取
+                        int i = ContextCompat.checkSelfPermission(AuthenticatorActivity.this, permissions[0]);
+                        // 权限是否已经 授权 GRANTED---授权  DINIED---拒绝
+                        if (i != PackageManager.PERMISSION_GRANTED) {
+                            // 如果没有授予该权限，就去提示用户请求
+                            showDialogTipUserRequestPermission();
+                        }else{
+                            startActivityForResult(new Intent(AuthenticatorActivity.this, CaptureActivity.class),0);
+                        }
+                    }
+
+                    //  startActivityForResult(new Intent(AuthenticatorActivity.this, CaptureActivity.class), 0);
+                }
+            });
             /// initialize block to be moved to single Fragment to check server and get info about it
 
             /// initialize block to be moved to single Fragment to retrieve and validate credentials
@@ -2284,5 +2324,114 @@ public class AuthenticatorActivity extends AccountAuthenticatorActivity
      */
     public void doNegativeAuthenticationDialogClick() {
         mIsFirstAuthAttempt = true;
+    }
+
+    @Override
+    protected void onActivityResult(int requestCode, int resultCode, Intent data) {
+        // TODO Auto-generated method stub
+        super.onActivityResult(requestCode, resultCode, data);
+        if (requestCode == 123) {
+            if (android.os.Build.VERSION.SDK_INT >= Build.VERSION_CODES.M) {
+                // 检查该权限是否已经获取
+                int i = ContextCompat.checkSelfPermission(this, permissions[0]);
+                // 权限是否已经 授权 GRANTED---授权  DINIED---拒绝
+                if (i != PackageManager.PERMISSION_GRANTED) {
+                    // 提示用户应该去应用设置界面手动开启权限
+                   showDialogTipUserGoToAppSettting();
+                } else {
+                    if (dialog != null && dialog.isShowing()) {
+                        dialog.dismiss();
+                    }
+                    Toast.makeText(this, R.string.success_to_obtain_permission, Toast.LENGTH_SHORT).show();
+                }
+            }
+        }
+        if (resultCode == RESULT_OK) {
+            String result = data.getExtras().getString("result");
+            mHostUrlInput.setText(result);
+            if (!webViewLoginMethod && mHostUrlInput.getText() != null && mHostUrlInput.getText().length() > 0) {
+                checkOcServer();
+            }
+        }
+    }
+
+    // 提示用户该请求权限的弹出框
+    private void showDialogTipUserRequestPermission() {
+
+        new AlertDialog.Builder(this)
+                .setTitle(R.string.apply_to_turn_on_camera_permissions)
+                .setMessage(R.string.need_permission_prompts)
+                .setPositiveButton(R.string.turn_on, new DialogInterface.OnClickListener() {
+                    @Override
+                    public void onClick(DialogInterface dialog, int which) {
+                        startRequestPermission();
+                    }
+                })
+                .setNegativeButton(R.string.common_cancel, new DialogInterface.OnClickListener() {
+                    @Override
+                    public void onClick(DialogInterface dialog, int which) {
+//                        finish();
+                    }
+                }).setCancelable(false).show();
+    }
+
+    // 开始提交请求权限
+    private void startRequestPermission() {
+        ActivityCompat.requestPermissions(this, permissions, 321);
+    }
+
+    // 用户权限 申请 的回调方法
+    @Override
+    public void onRequestPermissionsResult(int requestCode, @NonNull String[] permissions, @NonNull int[] grantResults) {
+        super.onRequestPermissionsResult(requestCode, permissions, grantResults);
+        if (requestCode == 321) {
+            if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.M) {
+                if (grantResults[0] != PackageManager.PERMISSION_GRANTED) {
+//                     判断用户是否 点击了不再提醒。(检测该权限是否还可以申请)
+                    boolean b = shouldShowRequestPermissionRationale(permissions[0]);
+                    if (!b) {
+                        // 用户还是想用我的 APP 的
+                        // 提示用户去应用设置界面手动开启权限
+                        showDialogTipUserGoToAppSettting();
+                    }
+//                    else
+//                        finish();
+                } else {
+                    Toast.makeText(this, R.string.success_to_obtain_permission, Toast.LENGTH_SHORT).show();
+                }
+            }
+        }
+    }
+
+    // 提示用户去应用设置界面手动开启权限
+    private void showDialogTipUserGoToAppSettting() {
+
+        dialog = new AlertDialog.Builder(this)
+                .setTitle(R.string.apply_to_turn_on_camera_permissions)
+                .setMessage(R.string.turn_on_permission_prompts)
+                .setPositiveButton(R.string.turn_on, new DialogInterface.OnClickListener() {
+                    @Override
+                    public void onClick(DialogInterface dialog, int which) {
+                        // 跳转到应用设置界面
+                        goToAppSetting();
+                    }
+                })
+                .setNegativeButton(R.string.common_cancel, new DialogInterface.OnClickListener() {
+                    @Override
+                    public void onClick(DialogInterface dialog, int which) {
+//                        finish();
+                    }
+                }).setCancelable(false).show();
+    }
+
+    // 跳转到当前应用的设置界面
+    private void goToAppSetting() {
+        Intent intent = new Intent();
+
+        intent.setAction(Settings.ACTION_APPLICATION_DETAILS_SETTINGS);
+        Uri uri = Uri.fromParts("package", getPackageName(), null);
+        intent.setData(uri);
+
+        startActivityForResult(intent, 123);
     }
 }

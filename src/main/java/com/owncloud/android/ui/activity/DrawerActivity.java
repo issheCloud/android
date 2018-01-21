@@ -356,6 +356,10 @@ public abstract class DrawerActivity extends ToolbarActivity implements DisplayU
             navigationView.getMenu().removeItem(R.id.nav_participate);
         }
 
+        if(!getResources().getBoolean(R.bool.notifications_activity_enabled)){
+            navigationView.getMenu().removeItem(R.id.nav_notifications);
+        }
+
         if (!getResources().getBoolean(R.bool.shared_enabled)) {
             navigationView.getMenu().removeItem(R.id.nav_shared);
         }

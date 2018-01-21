@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
-    <string name="about_android">%1$s Android应用</string>
+    <string name="about_android">%1$s</string>
     <string name="about_version">版本 %1$s</string>
     <string name="actionbar_sync">刷新帐户</string>
     <string name="actionbar_upload">上传</string>
@@ -687,5 +687,10 @@
     <string name="screenshot_04_accounts">连接到不同的账户</string>
     <string name="screenshot_05_autoUpload">自动上传照片&amp;/视频 </string>
     <string name="screenshot_06_davdroid">通过DAVdroid 同步日历 &amp; 联系人</string>
-    
+    <string name="turn_on_permission_prompts">请在-应用设置-权限-中，允许MicroCloud使用相机权限来使用扫一扫功能。</string>
+    <string name="turn_on">立即开启</string>
+    <string name="apply_to_turn_on_camera_permissions">申请开启相机权限</string>
+    <string name="success_to_obtain_permission">权限获取成功</string>
+    <string name="need_permission_prompts">由于Microcloud需要获取相机权限；否则，您将无法正常使用扫一扫功能</string>
+
     </resources>

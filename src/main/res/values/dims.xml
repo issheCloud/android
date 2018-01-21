@@ -57,7 +57,8 @@
     <dimen name="alternate_half_margin">5dp</dimen>
     <dimen name="alternate_padding">10dp</dimen>
     <dimen name="alternate_half_padding">5dp</dimen>
-    <dimen name="alternate_padding_right">55dp</dimen>
+    <dimen name="alternate_padding_right">75dp</dimen>
+    <dimen name="scan_btn_margin_right">40dp</dimen>
     <dimen name="display_text_min_height">32dp</dimen>
     <dimen name="divider_height_independent">1dip</dimen>
     <dimen name="alternate_padding_independent">10dip</dimen>

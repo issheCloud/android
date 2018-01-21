@@ -411,8 +411,36 @@ public class PreviewImageFragment extends FileFragment {
             }
         }
 
-    }
+        item = menu.findItem(R.id.action_select_all);
+        if (item != null) {
+            item.setVisible(false);
+            item.setEnabled(false);
+        }
+        /*
+        item = menu.findItem(R.id.action_deselect_all);
+        if (item != null) {
+            item.setVisible(false);
+            item.setEnabled(false);
+        }
+        */
+        item = menu.findItem(R.id.action_keep_files_offline);
+        if (item != null) {
+            item.setVisible(false);
+            item.setEnabled(false);
+        }
 
+        item = menu.findItem(R.id.action_unset_keep_files_offline);
+        if (item != null) {
+            item.setVisible(false);
+            item.setEnabled(false);
+        }
+
+        item = menu.findItem(R.id.action_switch_view);
+        if (item != null){
+            item.setVisible(false);
+            item.setEnabled(false);
+        }
+    }
 
     /**
      * {@inheritDoc}

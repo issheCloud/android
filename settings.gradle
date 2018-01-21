@@ -1,2 +1,2 @@
-include ':'
+include ':', ':libzxing'
 //include 'nextcloud-android-library'

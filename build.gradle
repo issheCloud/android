@@ -89,12 +89,14 @@ android {
         productFlavors {
             // used for f-droid
             generic {
-                applicationId 'com.nextcloud.client'
+                //applicationId 'com.nextcloud.client'
+                applicationId 'com.microcloud.client'
                 dimension "default"
             }
 
             gplay {
-                applicationId 'com.nextcloud.client'
+                //applicationId 'com.nextcloud.client'
+                applicationId 'com.microcloud.client'
                 dimension "default"
             }
 
@@ -245,7 +247,7 @@ dependencies {
     // fix conflict in dependencies; see http://g.co/androidstudio/app-test-app-conflict for details
     //androidTestImplementation "com.android.support:support-annotations:${supportLibraryVersion}"
     implementation 'org.jetbrains:annotations:15.0'
-
+    compile project(path: ':libzxing')
     androidTestCompile 'tools.fastlane:screengrab:1.0.0'
 }
 
