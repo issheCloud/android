@@ -47,7 +47,7 @@
     <string name="prefs_log_delete_history_button">Geçmişi sil</string>
     <string name="prefs_calendar_contacts">Takvim ve kişiler eşitlensin</string>
     <string name="prefs_calendar_contacts_summary">Geçerli hesap için DAVdroid (v1.3.0+) kurulumu</string>
-    <string name="prefs_calendar_contacts_address_resolve_error">Hesabın sunucu adresi DAVdroid tarafından çözümlenemedi</string>
+    <string name="prefs_calendar_contacts_address_resolve_error">DAVdroid sunucu adı ya da adresi çözümlenemedi.</string>
     <string name="prefs_calendar_contacts_no_store_error">F-Droid ya da Google Play kurulmamış</string>
     <string name="prefs_calendar_contacts_sync_setup_successful">Takvim ve kişi eşitlemesi ayarları</string>
     <string name="prefs_daily_contacts_sync_summary">Kişilerinizin günlük yedeği</string>
@@ -64,7 +64,7 @@
     <string name="auth_host_url">Sunucu adresi https://&#8230;</string>
     <string name="auth_username">Kullanıcı Adı</string>
     <string name="auth_password">Parola</string>
-    <string name="auth_register">Henüz bir sunucunuz yok mu?\Hizmet sağlayıcılardan yararlanabilirsiniz</string>
+    <string name="auth_register">Henüz Nextcloud kullanmıyor musunuz?\Hizmet sağlayıcılardan yararlanabilirsiniz</string>
     <string name="sync_string_files">Dosyalar</string>
     <string name="setup_btn_connect">Bağlan</string>
     <string name="uploader_btn_upload_text">Yükle</string>
@@ -102,14 +102,14 @@
     <string name="file_list_empty_headline_server_search_videos">Herhangi bir görüntü bulunamadı</string>
     <string name="file_list_empty_headline_server_search_photos">Herhangi bir fotoğraf bulunamadı</string>
     <string name="file_list_empty_search">Başka bir klasöre bakılmasını ister misiniz?</string>
-    <string name="file_list_empty_recently_modified">Son 7 gün içinde değiştirilmiş herhangi bir dosya bulunamadı</string>
-    <string name="file_list_empty_recently_modified_filter">Arama sonucunda son 7 gün içinde düzenlenmiş bir dosya bulunamadı.</string>
+    <string name="file_list_empty_recently_modified">Son 7 gün içinde düzenlenmiş bir dosya bulunamadı</string>
+    <string name="file_list_empty_recently_modified_filter">Son 7 içinde düzenlenmiş bir dosya yok</string>
     <string name="file_list_empty_recently_added">Geçenlerde eklenmiş herhangi bir dosya bulunamadı</string>
-    <string name="file_list_empty_recently_added_filter">Arama sonucunda geçenlerde eklenmiş bir dosya bulunamadı.</string>
+    <string name="file_list_empty_recently_added_filter">Yakınlarda eklenmiş bir dosya yok</string>
     <string name="file_list_empty_text_photos">Bazı fotoğraflar yükleyin ya da otomatik yüklemeyi etkinleştirin.</string>
-    <string name="file_list_empty_text_photos_filter">Arama sonucunda herhangi bir fotoğraf bulunamadı.</string>
+    <string name="file_list_empty_text_photos_filter">Herhangi bir fotoğraf bulunamadı.</string>
     <string name="file_list_empty_text_videos">Bazı görüntüler yükleyin ya da otomatik yüklemeyi etkinleştirin.</string>
-    <string name="file_list_empty_text_videos_filter">Arama sonucunda herhangi bir görüntü bulunamadı.</string>
+    <string name="file_list_empty_text_videos_filter">Herhangi bir görüntü bulunamadı.</string>
     <string name="upload_list_empty_headline">Herhangi bir yükleme yok</string>
     <string name="upload_list_empty_text_auto_upload">Bazı içerikler yükleyin ya da otomatik yüklemeyi etkinleştirin.</string>
     <string name="file_list_folder">klasör</string>
@@ -126,6 +126,7 @@
     <string name="common_cancel">İptal</string>
     <string name="common_back">Geri</string>
     <string name="common_save">Kaydet</string>
+    <string name="common_error">Hata</string>
     <string name="common_loading">Yükleniyor&#8230;</string>
     <string name="common_unknown">bilinmiyor</string>
     <string name="common_error_unknown">Bilinmeyen sorun</string>
@@ -162,7 +163,7 @@
     <string name="uploads_view_upload_status_conflict">Çakışma</string>
     <string name="uploads_view_upload_status_service_interrupted">Uygulama sonlandırıldı</string>
     <string name="uploads_view_upload_status_unknown_fail">Bilinmeyen sorun</string>
-    <string name="uploads_view_upload_status_waiting_for_wifi">WiFi bağlantısı bekleniyor</string>
+    <string name="uploads_view_upload_status_waiting_for_wifi">Wi-Fi bağlantısı bekleniyor</string>
     <string name="uploads_view_upload_status_waiting_exit_power_save_mode">Güç tasarrufu kipinden çıkılması bekleniyor</string>
     <string name="uploads_view_later_waiting_to_upload">Yüklenmeyi bekliyor</string>
     <string name="downloader_download_in_progress_ticker">İndiriliyor&#8230;</string>
@@ -221,7 +222,7 @@
     <string name="media_err_malformed">Ortam dosyası doğru şekilde kodlanmamış</string>
     <string name="media_err_timeout">Oynatmaya çalışılırken zaman aşımına uğradı</string>
     <string name="media_err_invalid_progressive_playback">Ortam dosyası akışı sağlanamadı</string>
-    <string name="media_err_unknown">Ortam dosyası yüklü ortam oynatıcı ile oynatılamıyor</string>
+    <string name="media_err_unknown">Ortam dosyası iç ortam oynatıcı ile oynatılamıyor</string>
     <string name="media_err_security_ex">%1$s oynatılmaya çalışılırken bir güvenlik sorunu çıktı</string>
     <string name="media_err_io_ex">%1$s oynatılmaya çalışılırken bir giriş sorunu çıktı</string>
     <string name="media_err_unexpected">%1$s oynatılmaya çalışılırken beklenmeyen bir sorun çıktı</string>
@@ -267,6 +268,8 @@
     <string name="favorite_real">Sık Kullanılanlara Ekle</string>
     <string name="unset_favorite_real">Sık Kullanılanlardan Çıkar</string>
     <string name="favorite_switch">Çevrimdışı kullanılabilir</string>
+    <string name="encrypted">Şifrelensin</string>
+    <string name="unset_encrypted">Şifrelemeyi kaldır</string>
     <string name="common_rename">Yeniden adlandır</string>
     <string name="common_remove">Sil</string>
     <string name="confirmation_remove_file_alert">%1$s dosyasını gerçekten silmek istiyor musunuz?</string>
@@ -366,9 +369,9 @@
 
     <string name="error_cant_bind_to_operations_service">Ciddi sorun: İşlemler gerçekleştirilemiyor</string>
 
-    <string name="network_error_socket_exception">Sunucuya bağlanılırken bir sorun çıktı.</string>
-    <string name="network_error_socket_timeout_exception">Sunucu beklenirken bir sorun çıktı, işlem tamamlanamadı.</string>
-    <string name="network_error_connect_timeout_exception">Sunucu beklenirken bir sorun çıktı, işlem tamamlanamadı.</string>
+    <string name="network_error_socket_exception">Sunucu bağlantısı kurulurken bir sorun çıktı</string>
+    <string name="network_error_socket_timeout_exception">Sunucu beklenirken bir sorun çıktı, işlem tamamlanamadı</string>
+    <string name="network_error_connect_timeout_exception">Sunucu beklenirken bir sorun çıktı, işlem tamamlanamadı</string>
     <string name="network_host_not_available">İşlem tamamlanamadı, sunucu kullanılamıyor</string>
 
     <string name="forbidden_permissions">%s izniniz yok</string>
@@ -391,12 +394,12 @@
     <string name="file_migration_cleaning">Temizleniyor&#8230;</string>
     <string name="file_migration_restoring_accounts_configuration">Hesap ayarları geri yükleniyor&#8230;</string>
     <string name="file_migration_ok_finished">Tamamlandı</string>
-    <string name="file_migration_failed_not_enough_space">Hata: Disk alanı yetersiz</string>
-    <string name="file_migration_failed_not_writable">Hata: Hedef dosya yazılabilir değil</string>
-    <string name="file_migration_failed_not_readable">Hata: Kaynak dosya okunabilir değil</string>
-    <string name="file_migration_failed_dir_already_exists">Hata: Nextcloud klasörü zaten var</string>
-    <string name="file_migration_failed_while_coping">Hata: Aktarım sırasında sorun çıktı</string>
-    <string name="file_migration_failed_while_updating_index">Hata: Dizin güncellenemedi</string>
+    <string name="file_migration_failed_not_enough_space">Disk alanı yetersiz</string>
+    <string name="file_migration_failed_not_writable">Hedef dosyaya yazılamadı</string>
+    <string name="file_migration_failed_not_readable">Kaynak dosya okunamadı</string>
+    <string name="file_migration_failed_dir_already_exists">Nextcloud klasörü zaten var</string>
+    <string name="file_migration_failed_while_coping">Aktarım sırasında sorun çıktı</string>
+    <string name="file_migration_failed_while_updating_index">Dizin güncellenirken sorun çıktı</string>
 
     <string name="file_migration_directory_already_exists">Veri klasörü zaten var. Şunlardan birini seçin:</string>
     <string name="file_migration_override_data_folder">Değiştirilsin</string>
@@ -415,7 +418,7 @@
 	<string name="log_send_mail_subject">%1$s Android uygulaması günlükleri</string>
 	<string name="log_progress_dialog_text">Veri yükleniyor&#8230;</string>
 
-	<string name="saml_authentication_required_text">Kimlik doğrulaması gerekli</string>
+	<string name="saml_authentication_required_text">Parola gerekli</string>
 	<string name="saml_authentication_wrong_pass">Parola yanlış</string>
 	<string name="actionbar_move">Taşı</string>
     <string name="actionbar_copy">Kopyala</string>
@@ -585,18 +588,6 @@
     <string name="welcome_feature_3_title">Otomatik yükleme</string>
     <string name="welcome_feature_3_text">Fotoğraflarınızı koruyun</string>
 
-    <string name="whats_new_auto_upload_title">Genişletilmiş otomatik yükleme</string>
-    <string name="whats_new_auto_upload_content">\u2022 tüm Android sürümleri için\n\u2022 daha az pil harcaması\n\u2022 daha güvenli, ancak görseller\n\u2022 &amp; görüntüler anında ayrılmıyor</string>
-
-    <string name="whats_new_search_title">Tam sunucu araması</string>
-    <string name="whats_new_search_content">\u2022 Yalnız geçerli klasörde değil\n\u2022 Tüm sunucudaki sonuçları verir\n\u2022 Doğrudan dosya/klasör açma\n\u2022 NC12 ve üzerindeki sürümlerde desteklenir</string>
-
-    <string name="whats_new_theming_title">Tema desteği</string>
-    <string name="whats_new_theming_content">Sunucu uygulamasında etkinleştirilmiş ise\n\u2022 art alan görseli\n\u2022 sunucu adı\n\u2022 hesapları ayırt etmek için farklı renk kullanımı</string>
-
-    <string name="whats_new_notification_title">Bildirim desteği</string>
-    <string name="whats_new_notification_content">Yeni bildirimler\n\u2022 yeni uzak paylaşım\n\u2022 yorumda anma\n\u2022 yönetici duyuruları</string>
-
     <string name="whats_new_skip">Atla</string>
 
     <string name="fingerprint_scan_finger">Lütfen parmağınızı tarayın</string>
@@ -635,10 +626,10 @@
     <!-- Notifications -->
     <string name="new_notification_received">Yeni bir bildirim var</string>
     <string name="drawer_logout">Oturumu Kapat</string>
-    <string name="picture_set_as_no_app">Görselin ayarlanabileceği bir uygulama bulunamadı!</string>
+    <string name="picture_set_as_no_app">Görselin ayarlanabileceği bir uygulama bulunamadı</string>
     <string name="privacy">Gizlilik</string>
-    <string name="file_not_found">Dosya bulunamadı!</string>
-    <string name="file_not_synced">İstenilen dosya eşitlenemedi. Kullanılabilen son sürüm görüntüleniyor.</string>
+    <string name="file_not_found">Dosya bulunamadı</string>
+    <string name="file_not_synced">Dosya eşitlenemedi. Kullanılabilen son sürüm görüntüleniyor.</string>
 
     <!-- Auto upload -->
     <string name="autoupload_custom_folder">Bir özel klasör kurun</string>
@@ -647,8 +638,6 @@
 
     <string name="test_server_button">Sunucu bağlantısını sına</string>
     <string name="resharing_is_not_allowed">Yeniden paylaşıma izin verilmiyor</string>
-    <string name="whats_new_fingerprint_title">Parmak izi ile kilit açma</string>
-    <string name="whats_new_fingerprint_content">Uygulama kilidini açmak için parmak izi kullanımı</string>
     <string name="fallback_weblogin_back">Geri</string>
     <string name="fallback_weblogin_text">Eski oturum açma yöntemine dön</string>
 
@@ -665,16 +654,17 @@
     <string name="sync_in_progress">Lütfen dosyanın en son sürümü alınırken bekleyin.</string>
     <string name="date_unknown">Bilinmiyor</string>
 
-    <string name="resized_image_not_possible">Boyutu değiştirilmiş bir görsel yok. Tam görsel indirilsin mi?</string>
+    <string name="resized_image_not_possible">Boyutu değiştirilmiş bir görsel yok.</string>
+    <string name="resized_image_not_possible_download">Boyutu değiştirilmiş bir görsel yok. Tam görsel indirilsin mi?</string>
     <string name="resized_images_download_full_image">Tam görsel indirilsin mi?</string>
 
-    <string name="store_short_desc">Nextcloud Android uygulaması Nextcloud kopyanızdaki tüm dosyalarınıza erişmenizi sağlar.</string>
-    <string name="store_full_desc">Copyleft Nextcloud Android uygulaması, Nextcloud üzerindeki tüm dosyalarınıza erişmenizi sağlar.\n\nÖzellikleri:\* Kolay kullanılan modern arayüz\n* Dosyalarınızı Nextcloud sunucunuza kolayca yükleyebilme\n* Dosyalarınızı başkalarıyla paylaşabilme\n* Sık kullandığınız dosya ve klasörleri eşitleme\n* Çektiğiniz fotoğraf ve görüntüleri anında yükleme\n* Birden çok hesap desteği\nKullanımda karşılaşabileceğiniz hataları https://github.com/nextcloud/android/issues adresinden bildirebilir, uygulama hakkındaki konuları https://help.nextcloud.com adresinde tartışabilirsiniz ;-)\n\nNextcloud ile yeni mi tanıştınız? Nextcloud özel bir veri depolama ve paylaşma ağıdır. Tamamen açık kaynak kodludur. Dosyalarınızı kendi sunucunuzda saklayabileceğiniz gibi ücretli hizmet olarak da satın alabilirsiniz. Böylece fotoğraflarınız, dosyalarınız, takviminiz, belgeleriniz, kişileriniz ve diğer tüm özel bilgileriniz sizin kontrolünüzde olur. \n\nAyrıntılı bilgi almak için sitemize bakabilirsiniz: https://nextcloud.com</string>
+    <string name="store_short_desc">Nextcloud Android uygulaması Nextcloud üzerindeki tüm dosyalarınıza erişmenizi sağlar.</string>
+    <string name="store_full_desc">Copyleft Nextcloud Android uygulaması, Nextcloud üzerindeki tüm dosyalarınıza erişmenizi sağlar.\n\nÖzellikleri:\* Sunucunuzun temasına uygun, kolay kullanılan modern arayüz\n* Dosyalarınızı Nextcloud sunucunuza yükleme\n* Dosyalarınızı başkalarıyla paylaşma\n* Sık kullandığınız dosya ve klasörleri eşitleme\n* Sunucunuzdaki tüm klasörlerde arama yapma\n* Çektiğiniz fotoğraf ve görüntüleri otomatik yükleme\n* Bildirimler ile güncel kalma\n* Birden çok hesap desteği\n*Parmak izi ya da PIN kodu ile verilerinize güvenli erişme\n* Davdroid bütünleştirmesi ile takvim ve kişileri eşitleme\n\nKullanımda karşılaşabileceğiniz hataları https://github.com/nextcloud/android/issues adresinden bildirebilir, uygulama hakkındaki konuları https://help.nextcloud.com/c/clients/android adresinde tartışabilirsiniz\n\nNextcloud ile yeni mi tanıştınız? Nextcloud özel bir veri depolama ve paylaşma ağıdır. Tamamen açık kaynak kodludur. Dosyalarınızı kendi sunucunuzda saklayabileceğiniz gibi ücretli hizmet olarak da satın alabilirsiniz. Böylece fotoğraflarınız, dosyalarınız, takviminiz, belgeleriniz, kişileriniz ve diğer tüm özel bilgileriniz sizin kontrolünüzde olur. \n\nAyrıntılı bilgi almak için web sitemize bakabilirsiniz: https://nextcloud.com</string>
 
     <string name="drawer_current_account">Geçerli hesap</string>
     <string name="drawer_middle_account">Orta hesap</string>
     <string name="drawer_end_account">Son hesap</string>
-    <string name="contactlist_item_icon">Kullanıcı listesi kullanıcı simgesi</string>
+    <string name="contactlist_item_icon">Kişi listesi kullanıcı simgesi</string>
     <string name="activity_icon">İşlem simgesi</string>
     <string name="file_icon">Dosya simgesi</string>
     <string name="user_icon">Kullanıcı simgesi</string>
@@ -688,12 +678,12 @@
     <string name="shared_icon">Paylaşılmış simgesi</string>
     <string name="overflow_menu">Taşma menüsü</string>
     <string name="share_file_icon">Dosya paylaşımı simgesi</string>
-    <string name="sort_by_name_ascending">Ada göre artan sıralama</string>
-    <string name="sort_by_modification_date_ascending">Değişiklik tarihine göre artan sıralama</string>
-    <string name="sort_by_size_descending">Boyuta göre azalan sıralama</string>
-    <string name="sort_by_size_ascending">Boyuta göre artan sıralama</string>
-    <string name="sort_by_name_descending">Ada göre azalan sıralama</string>
-    <string name="sort_by_modification_date_descending">Değişiklik tarihine göre azalan sıralama</string>
+    <string name="sort_by_name_ascending">A - Z</string>
+    <string name="sort_by_modification_date_ascending">Yeniden Eskiye</string>
+    <string name="sort_by_size_descending">Büyükten Küçüğe</string>
+    <string name="sort_by_size_ascending">Küçükten Büyüğe</string>
+    <string name="sort_by_name_descending">Z - A</string>
+    <string name="sort_by_modification_date_descending">Eskiden Yeniye</string>
     <string name="synced_folders_type">Tür</string>
     <string name="sync_status_button">Eşitleme durumu düğmesi</string>
     <string name="synced_folder_settings_button">Ayarlar düğmesi</string>
@@ -703,7 +693,7 @@
     <string name="what_s_new_image">Yenilikler görseli</string>
 
     <string name="store_short_dev_desc">Nextcloud Dev uygulaması paralel olarak kurulabilen geliştirme sürümü örneğidir.</string>
-    <string name="store_full_dev_desc">Açık Kaynaklı Nextcloud Android uygulaması ile Nextcloud üzerindeki tüm dosyalarınıza erişebilirsiniz.\nBu sürüm resmi Nextcloud uygulamasının geliştirici sürümüdür ve kararsız çalışan ve veri kaybına yol açabilecek yeterince sınanmamış yeni özellikleri bulundurur. Bu sürüm yeni özellikleri sınamak ve hataları bildirmek isteyen kullanıcılar için tasarlanmıştır. Bu sürümü günlük işleriniz için kullanmayın!\n\nNormal ve Geliştirici sürümleri F-Droid üzerinde bulunur ve aynı anda kurulup kullanılabilir.</string>
+    <string name="store_full_dev_desc">Açık Kaynaklı Nextcloud Android uygulaması size mobil özgürlük sağlar.\nBu sürüm resmi Nextcloud uygulamasının geliştirici sürümü olduğundan, kararsız çalışabilir ve veri kaybına yol açabilecek yeterince sınanmamış yeni özellikler bulundurur. Bu sürüm yeni özellikleri sınamak ve hataları bildirmek isteyen kullanıcılar için tasarlanmıştır. Bu sürümü günlük işleriniz için kullanmayın!\n\nNormal ve Geliştirici sürümleri F-Droid üzerinde bulunur ve aynı anda kurulup kullanılabilir.</string>
 
     <string name="prefs_category_dev">Geliştirici</string>
     <string name="dev_version_no_information_available">Herhangi bir bilgi yok.</string>
@@ -732,11 +722,27 @@
     <string name="screenshot_03_drawer">İşlem, paylaşım, çevrimdışı dosyalar ve diğer özelliklere kolayca erişin</string>
     <string name="screenshot_04_accounts">Farklı hesaplara bağlanın</string>
     <string name="screenshot_05_autoUpload">Fotoğraf ve görüntülerinizi otomatik olarak yükleyin</string>
-    <string name="screenshot_06_davdroid">DAVdroid ile Takvim ve Kişilerinizi eşitleyin</string>
+    <string name="screenshot_06_davdroid">DAVdroid ile Takvim ve Kişileri eşitleme</string>
     
     <string name="userinfo_no_info_headline">Herhangi bir kişisel bilgi ayarlanmamış</string>
     <string name="userinfo_no_info_text">Profil sayfanızdan ad, görsel ve iletişim bilgilerinizi ekleyin.</string>
     <string name="drawer_header_background">Çekmece üst bilgisinin art alan görseli</string>
     <string name="account_icon">Hesap simgesi</string>
     
+    <string name="end_to_end_encryption_folder_not_empty">Bu klasör boş değil.</string>
+    <string name="end_to_end_encryption_wrong_password">Şifre çözülürken bir sorun çıktı. Parola yanlış olabilir mi?</string>
+    <string name="end_to_end_encryption_decrypting">Şifre çözülüyor&#8230;</string>
+    <string name="end_to_end_encryption_retrieving_keys">Anahtarlar alınıyor&#8230;</string>
+    <string name="end_to_end_encryption_enter_password">Özel anahtarın şifresinin çözülmesi için parolayı yazın.</string>
+    <string name="end_to_end_encryption_generating_keys">Yeni anahtarlar üretiliyor&#8230;</string>
+    <string name="end_to_end_encryption_keywords_description">12 sözcüklü parola çok güçlüdür ve şifrelenmiş dosyalarınızı yalnız sizin görüntüleyip kullanabilmenizi sağlar. Lütfen bir yere yazarak güvenli bir yerde saklayın.</string>
+    <string name="end_to_end_encryption_title">Şifreleme kurulumu</string>
+    <string name="end_to_end_encryption_passphrase_title">12 sözcüklü şifreleme parolanızı not edin</string>
+    <string name="end_to_end_encryption_not_supported">Şifreleme yalnız KitKat(4.4) ve üzerindeki sürümlerde kullanılabilir</string>
+    <string name="end_to_end_encryption_confirm_button">Şifreleme kurulumu</string>
+    <string name="end_to_end_encryption_password">Parola&#8230;</string>
+    <string name="end_to_end_encryption_unsuccessful">Anahtarlar kaydedilemedi, lütfen yeniden deneyin.</string>
+    <string name="end_to_end_encryption_dialog_close">Kapat</string>
+    <string name="end_to_end_encryption_storing_keys">Anahtarlar kaydediliyor</string>
+    <string name="copy_move_to_encrypted_folder_not_supported">Şifrelenmiş bir klasöre kopyalama ve taşıma işlemleri henüz desteklenmiyor.</string>
     </resources>

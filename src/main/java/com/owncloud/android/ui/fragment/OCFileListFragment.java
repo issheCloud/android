@@ -39,6 +39,7 @@ import android.support.design.widget.BottomNavigationView;
 import android.support.design.widget.Snackbar;
 import android.support.v4.widget.DrawerLayout;
 import android.support.v4.widget.SwipeRefreshLayout;
+import android.support.v7.app.ActionBar;
 import android.text.TextUtils;
 import android.util.SparseBooleanArray;
 import android.view.ActionMode;
@@ -907,11 +908,20 @@ public class OCFileListFragment extends ExtendedListFragment implements OCFileLi
                     } else {
                         // update state and view of this fragment
                         searchFragment = false;
-                        listDirectory(file, MainApp.isOnlyOnDevice(), false);
-                        // then, notify parent activity to let it update its state and view
-                        mContainerActivity.onBrowsedDownTo(file);
-                        // save index and top position
-                        saveIndexAndTopPosition(position);
+
+                        if (mContainerActivity instanceof FolderPickerActivity &&
+                                ((FolderPickerActivity) mContainerActivity)
+                                        .isDoNotEnterEncryptedFolder()) {
+                            Snackbar.make(getListView(),
+                                    R.string.copy_move_to_encrypted_folder_not_supported,
+                                    Snackbar.LENGTH_LONG).show();
+                        } else {
+                            listDirectory(file, MainApp.isOnlyOnDevice(), false);
+                            // then, notify parent activity to let it update its state and view
+                            mContainerActivity.onBrowsedDownTo(file);
+                            // save index and top position
+                            saveIndexAndTopPosition(position);
+                        }
                     }
                 } else {
                     // update state and view of this fragment
@@ -1629,8 +1639,16 @@ public class OCFileListFragment extends ExtendedListFragment implements OCFileLi
         getActivity().runOnUiThread(new Runnable() {
             @Override
             public void run() {
-                if (getActivity() != null && ((FileDisplayActivity) getActivity()).getSupportActionBar() != null) {
-                    ThemeUtils.setColoredTitle(((FileDisplayActivity) getActivity()).getSupportActionBar(), title);
+                if (getActivity() != null) {
+                    ActionBar actionBar = ((FileDisplayActivity) getActivity()).getSupportActionBar();
+
+                    if (actionBar != null) {
+                        if (android.os.Build.VERSION.SDK_INT < android.os.Build.VERSION_CODES.KITKAT) {
+                            actionBar.setTitle(title);
+                        } else {
+                            ThemeUtils.setColoredTitle(actionBar, title);
+                        }
+                    }
                 }
             }
         });

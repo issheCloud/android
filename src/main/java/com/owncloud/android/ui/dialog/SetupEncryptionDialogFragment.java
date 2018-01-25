@@ -28,8 +28,6 @@ import android.graphics.PorterDuff;
 import android.graphics.drawable.Drawable;
 import android.os.AsyncTask;
 import android.os.Bundle;
-import android.support.design.widget.TextInputEditText;
-import android.support.design.widget.TextInputLayout;
 import android.support.v4.app.DialogFragment;
 import android.support.v4.graphics.drawable.DrawableCompat;
 import android.support.v7.app.AlertDialog;
@@ -40,10 +38,12 @@ import android.widget.TextView;
 
 import com.owncloud.android.R;
 import com.owncloud.android.datamodel.ArbitraryDataProvider;
+import com.owncloud.android.lib.common.UserInfo;
 import com.owncloud.android.lib.common.operations.RemoteOperationResult;
 import com.owncloud.android.lib.common.utils.Log_OC;
 import com.owncloud.android.lib.resources.users.GetPrivateKeyOperation;
 import com.owncloud.android.lib.resources.users.GetPublicKeyOperation;
+import com.owncloud.android.lib.resources.users.GetRemoteUserInfoOperation;
 import com.owncloud.android.lib.resources.users.SendCSROperation;
 import com.owncloud.android.lib.resources.users.StorePrivateKeyOperation;
 import com.owncloud.android.utils.CsrHelper;
@@ -82,9 +82,8 @@ public class SetupEncryptionDialogFragment extends DialogFragment {
     private ArbitraryDataProvider arbitraryDataProvider;
     private Button positiveButton;
     private Button negativeButton;
-    private TextInputLayout passwordLayout;
     private DownloadKeysAsyncTask task;
-    private TextInputEditText passwordField;
+    private TextView passwordField;
     private String keyResult;
     private ArrayList<String> keyWords;
 
@@ -134,7 +133,6 @@ public class SetupEncryptionDialogFragment extends DialogFragment {
         View v = inflater.inflate(R.layout.setup_encryption_dialog, null);
         textView = v.findViewById(R.id.encryption_status);
         passphraseTextView = v.findViewById(R.id.encryption_passphrase);
-        passwordLayout = v.findViewById(R.id.encryption_passwordLayout);
         passwordField = v.findViewById(R.id.encryption_passwordInput);
         passwordField.getBackground().setColorFilter(accentColor, PorterDuff.Mode.SRC_ATOP);
 
@@ -305,7 +303,7 @@ public class SetupEncryptionDialogFragment extends DialogFragment {
                 }
             } else if (!privateKey.isEmpty()) {
                 textView.setText(R.string.end_to_end_encryption_enter_password);
-                passwordLayout.setVisibility(View.VISIBLE);
+                passwordField.setVisibility(View.VISIBLE);
                 positiveButton.setVisibility(View.VISIBLE);
             } else {
                 Log_OC.e(TAG, "Got empty private key string");
@@ -333,8 +331,23 @@ public class SetupEncryptionDialogFragment extends DialogFragment {
                 KeyPair keyPair = EncryptionUtils.generateKeyPair();
                 PrivateKey privateKey = keyPair.getPrivate();
 
+                // get user id
+                String userID;
+                GetRemoteUserInfoOperation remoteUserNameOperation =
+                        new GetRemoteUserInfoOperation();
+                RemoteOperationResult remoteUserNameOperationResult = remoteUserNameOperation
+                        .execute(account, getContext(), true);
+
+                if (remoteUserNameOperationResult.isSuccess() &&
+                        remoteUserNameOperationResult.getData() != null) {
+                    UserInfo userInfo = (UserInfo) remoteUserNameOperationResult.getData().get(0);
+                    userID = userInfo.getId();
+                } else {
+                    userID = account.name;
+                }
+
                 // create CSR
-                String urlEncoded = CsrHelper.generateCsrPemEncodedString(keyPair, account.name);
+                String urlEncoded = CsrHelper.generateCsrPemEncodedString(keyPair, userID);
 
                 SendCSROperation operation = new SendCSROperation(urlEncoded);
                 RemoteOperationResult result = operation.execute(account, getContext(), true);

@@ -78,8 +78,8 @@ android {
 
         multiDexEnabled true
 
-        versionCode = 30000001
-        versionName = "3.0.0 RC1"
+        versionCode = 30000002
+        versionName = "3.0.0 RC2"
 
         // adapt structure from Eclipse to Gradle/Android Studio expectations;
         // see http://tools.android.com/tech-docs/new-build-system/user-guide#TOC-Configuring-the-Structure
@@ -100,25 +100,12 @@ android {
                 dimension "default"
             }
 
-            modified {
-                // structure is:
-                // domain tld
-                // domain name
-                // .client
-                applicationId 'com.custom.client'
-                dimension "default"
-            }
-
             versionDev {
-                applicationId "com.nextcloud.android.beta"
+                applicationId "com.microcloud.android"
                 dimension "default"
-                versionCode 20180116
-                versionName "20180116"
+                versionCode 20180125
+                versionName "20180125"
             }
-        }
-
-        configurations {
-            modifiedCompile
         }
     }
 
@@ -197,7 +184,7 @@ dependencies {
     // dependencies for app building
     implementation 'com.android.support:multidex:1.0.2'
 //    implementation project('nextcloud-android-library')
-    implementation 'com.github.nextcloud:android-library:1.0.35'
+    implementation 'com.github.nextcloud:android-library:1.0.36'
     versionDevImplementation 'com.github.nextcloud:android-library:master-SNAPSHOT' // use always latest master
     implementation "com.android.support:support-v4:${supportLibraryVersion}"
     implementation "com.android.support:design:${supportLibraryVersion}"
@@ -218,7 +205,7 @@ dependencies {
     implementation 'com.madgag.spongycastle:pkix:1.54.0.0'
     implementation 'com.google.code.gson:gson:2.8.2'
 
-    // uncomment for gplay, modified
+    // uncomment for gplay
     // implementation "com.google.firebase:firebase-messaging:${googleLibraryVersion}"
     // implementation "com.google.android.gms:play-services-base:${googleLibraryVersion}"
     // implementation "com.google.android.gms:play-services-gcm:${googleLibraryVersion}"
@@ -243,7 +230,7 @@ dependencies {
     androidTestImplementation 'com.android.support.test.espresso:espresso-core:3.0.1'
     androidTestImplementation 'com.android.support.test.espresso:espresso-contrib:3.0.1'
     // UIAutomator - for cross-app UI tests, and to grant screen is turned on in Espresso tests
-    androidTestImplementation 'com.android.support.test.uiautomator:uiautomator-v18:2.1.2'
+    androidTestImplementation 'com.android.support.test.uiautomator:uiautomator-v18:2.1.3'
     // fix conflict in dependencies; see http://g.co/androidstudio/app-test-app-conflict for details
     //androidTestImplementation "com.android.support:support-annotations:${supportLibraryVersion}"
     implementation 'org.jetbrains:annotations:15.0'
@@ -262,5 +249,5 @@ tasks.withType(Test) {
     }
 }
 
-// uncomment for gplay, modified (must be at the bottom)
+// uncomment for gplay (must be at the bottom)
 //apply plugin: 'com.google.gms.google-services'

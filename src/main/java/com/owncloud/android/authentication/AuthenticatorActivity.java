@@ -1609,6 +1609,9 @@ public class AuthenticatorActivity extends AccountAuthenticatorActivity
             case MAINTENANCE_MODE:
                 mServerStatusText = getResources().getString(R.string.maintenance_mode);
                 break;
+            case UNTRUSTED_DOMAIN:
+                mServerStatusText = getResources().getString(R.string.untrusted_domain);
+                break;
             default:
                 mServerStatusText = "";
                 mServerStatusIcon = 0;
@@ -1744,14 +1747,19 @@ public class AuthenticatorActivity extends AccountAuthenticatorActivity
             // Reset webView
             webViewPassword = null;
             webViewUser = null;
+            forceOldLoginMethod = false;
             deleteCookies();
 
             if (success) {
                 finish();
             } else {
                 // init webView again
-                mLoginWebView.setVisibility(View.GONE);
+                if (mLoginWebView != null) {
+                    mLoginWebView.setVisibility(View.GONE);
+                }
                 setContentView(R.layout.account_setup);
+
+                initOverallUi();
 
                 CustomEditText serverAddressField = findViewById(R.id.hostUrlInput);
                 serverAddressField.setText(mServerInfo.mBaseUrl);
@@ -2262,7 +2270,13 @@ public class AuthenticatorActivity extends AccountAuthenticatorActivity
         Fragment frag = getSupportFragmentManager().findFragmentByTag(dialogTag);
         if (frag instanceof DialogFragment) {
             DialogFragment dialog = (DialogFragment) frag;
-            dialog.dismiss();
+
+            try {
+                dialog.dismiss();
+            } catch (IllegalStateException e) {
+                Log_OC.e(TAG, e.getMessage());
+                dialog.dismissAllowingStateLoss();
+            }
         }
     }
 
