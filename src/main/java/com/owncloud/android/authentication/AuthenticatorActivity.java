@@ -2453,7 +2453,9 @@ public class AuthenticatorActivity extends AccountAuthenticatorActivity
             }else{
                 startActivityForResult(new Intent(AuthenticatorActivity.this, CaptureActivity.class),0);
             }
-        }
+        }else {
+             startActivityForResult(new Intent(AuthenticatorActivity.this, CaptureActivity.class),0);
+         }
 
         //  startActivityForResult(new Intent(AuthenticatorActivity.this, CaptureActivity.class), 0);
     }
