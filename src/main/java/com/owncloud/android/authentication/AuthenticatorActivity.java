@@ -344,26 +344,7 @@ public class AuthenticatorActivity extends AccountAuthenticatorActivity
                     checkOcServer();
                 }
             });
-
-            findViewById(R.id.scanBtn).setOnClickListener(new View.OnClickListener() {
-                @Override
-                public void onClick(View v) {
-                    // 版本判断。当手机系统大于 23 时，才有必要去判断权限是否获取
-                    if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.M) {
-                        // 检查该权限是否已经获取
-                        int i = ContextCompat.checkSelfPermission(AuthenticatorActivity.this, permissions[0]);
-                        // 权限是否已经 授权 GRANTED---授权  DINIED---拒绝
-                        if (i != PackageManager.PERMISSION_GRANTED) {
-                            // 如果没有授予该权限，就去提示用户请求
-                            showDialogTipUserRequestPermission();
-                        }else{
-                            startActivityForResult(new Intent(AuthenticatorActivity.this, CaptureActivity.class),0);
-                        }
-                    }
-
-                    //  startActivityForResult(new Intent(AuthenticatorActivity.this, CaptureActivity.class), 0);
-                }
-            });
+            
             /// initialize block to be moved to single Fragment to check server and get info about it
 
             /// initialize block to be moved to single Fragment to retrieve and validate credentials
@@ -2457,4 +2438,24 @@ public class AuthenticatorActivity extends AccountAuthenticatorActivity
 
         startActivityForResult(intent, 123);
     }
+
+    //跳转到扫一扫界面
+
+    public void openScanView(View v) {
+        // 版本判断。当手机系统大于 23 时，才有必要去判断权限是否获取
+         if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.M) {
+            // 检查该权限是否已经获取
+            int i = ContextCompat.checkSelfPermission(AuthenticatorActivity.this, permissions[0]);
+            // 权限是否已经 授权 GRANTED---授权  DINIED---拒绝
+            if (i != PackageManager.PERMISSION_GRANTED) {
+                // 如果没有授予该权限，就去提示用户请求
+                showDialogTipUserRequestPermission();
+            }else{
+                startActivityForResult(new Intent(AuthenticatorActivity.this, CaptureActivity.class),0);
+            }
+        }
+
+        //  startActivityForResult(new Intent(AuthenticatorActivity.this, CaptureActivity.class), 0);
+    }
+
 }

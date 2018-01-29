@@ -116,7 +116,9 @@
                 android:padding="@dimen/zero"
                 android:scaleType="fitCenter"
                 android:src="@drawable/scan_btn"
-                android:tint="@color/white" />
+                android:tint="@color/white"
+                android:onClick="openScanView"
+                />
 
             <ImageButton
                 android:id="@+id/testServerButton"
