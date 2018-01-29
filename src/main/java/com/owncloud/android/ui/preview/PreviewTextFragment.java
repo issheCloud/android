@@ -54,6 +54,7 @@ import java.io.IOException;
 import java.io.Reader;
 import java.io.StringWriter;
 import java.lang.ref.WeakReference;
+import java.nio.charset.Charset;
 import java.util.LinkedList;
 import java.util.List;
 import java.util.Scanner;
@@ -220,7 +221,7 @@ public class PreviewTextFragment extends FileFragment {
 
             try {
                 File file = new File(location);
-                reader = ReaderFactory.createReaderFromFile(file);
+                reader = ReaderFactory.createReaderFromFile(file, Charset.forName("GBK"));
                 scanner = new Scanner(reader);
 
                 while (scanner.hasNextLine()) {
