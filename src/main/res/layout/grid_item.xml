@@ -34,8 +34,8 @@
             android:layout_width="@dimen/standard_list_item_size"
             android:layout_height="@dimen/standard_list_item_size"
             android:layout_gravity="center"
-            android:src="@drawable/folder"
-            android:contentDescription="@string/thumbnail"/>
+            android:contentDescription="@string/thumbnail"
+            android:src="@drawable/folder" />
 
         <ImageView
             android:id="@+id/favorite_action"
@@ -96,6 +96,7 @@
         android:id="@+id/Filename"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
+        android:layout_marginTop="@dimen/grid_folder_text_margin_top"
         android:layout_marginLeft="@dimen/standard_quarter_margin"
         android:layout_marginRight="@dimen/standard_quarter_margin"
         android:ellipsize="middle"
