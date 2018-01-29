@@ -231,6 +231,13 @@ public class FileDetailFragment extends FileFragment implements OnClickListener,
         }
 
         // additional restriction for this fragment
+        item = menu.findItem(R.id.action_set_as_wallpaper);
+        if (item != null) {
+            item.setVisible(false);
+            item.setEnabled(false);
+        }
+
+        // additional restriction for this fragment
         item = menu.findItem(R.id.action_select_all);
         if (item != null) {
             item.setVisible(false);
