@@ -1463,7 +1463,9 @@ public class AuthenticatorActivity extends AccountAuthenticatorActivity
             //      4. we got the authentication method required by the server 
             mServerInfo = (GetServerInfoOperation.ServerInfo) (result.getData().get(0));
 
-            webViewLoginMethod = mServerInfo.mVersion.isWebLoginSupported() && !forceOldLoginMethod;
+            if (mAction == ACTION_CREATE) {
+                webViewLoginMethod = mServerInfo.mVersion.isWebLoginSupported() && !forceOldLoginMethod;
+            }
 
             if (webViewUser != null && !webViewUser.isEmpty() &&
                     webViewPassword != null && !webViewPassword.isEmpty()) {
