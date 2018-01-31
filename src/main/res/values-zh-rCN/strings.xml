@@ -648,5 +648,5 @@
     <string name="apply_to_turn_on_camera_permissions">申请开启相机权限</string>
     <string name="success_to_obtain_permission">权限获取成功</string>
     <string name="need_permission_prompts">由于Microcloud需要获取相机权限；否则，您将无法正常使用扫一扫功能</string>
-
+    <string name="contacts_backup_folder">/.联系人备份</string>
     </resources>
