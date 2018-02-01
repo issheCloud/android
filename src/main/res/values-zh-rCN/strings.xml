@@ -255,6 +255,7 @@
     <string name="sync_file_nothing_to_do_msg">文件内容已同步</string>
     <string name="create_dir_fail_msg">无法创建文件夹</string>
     <string name="filename_forbidden_characters">禁用字符: / \\ &lt; &gt; : \" | ? *</string>
+    <string name="filename_empty">文件夹名称不能为空</string>
     <string name="wait_a_moment">稍等 &#8230;</string>
     <string name="wait_checking_credentials">检查保存的证书</string>
     <string name="filedisplay_no_file_selected">没有选择文件</string>
