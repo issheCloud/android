@@ -429,7 +429,14 @@ public class AuthenticatorActivity extends AccountAuthenticatorActivity
                     parseAndLoginFromWebView(url);
                     return true;
                 }
-                return false;
+				
+				if (url.compareTo(mServerInfo.mBaseUrl + "/login") == 0) {
+					url = mServerInfo.mBaseUrl + WEB_LOGIN;
+					Map<String, String> headers = new HashMap<>();
+					headers.put(RemoteOperation.OCS_API_HEADER, RemoteOperation.OCS_API_HEADER_VALUE);
+					mLoginWebView.loadUrl(url, headers);
+					}
+				return false;
             }
 
             @Override
