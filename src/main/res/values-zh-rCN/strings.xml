@@ -471,7 +471,7 @@
     <string name="confirmation_remove_folders_alert">确定删除选中项及其内容？</string>
     <string name="maintenance_mode">服务器处于维护模式</string>
 
-    <string name="uploads_view_upload_status_waiting_for_charging">等待收费</string>
+    <string name="uploads_view_upload_status_waiting_for_charging">等待充电</string>
     <string name="actionbar_search">搜索</string>
     <string name="learn_more">学习更多</string>
     <string name="drawer_synced_folders">自动上传</string>
