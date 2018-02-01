@@ -683,7 +683,8 @@ public class FileDisplayActivity extends HookActivity
         menu.findItem(R.id.action_create_dir).setVisible(false);
 
         final MenuItem item = menu.findItem(R.id.action_search);
-        searchView = (SearchView) MenuItemCompat.getActionView(item);
+        searchView = (SearchView)item.getActionView();
+        //searchView = (SearchView) MenuItemCompat.getActionView(item);
 
         // hacky as no default way is provided
         int fontColor = ThemeUtils.fontColor();
@@ -692,7 +693,6 @@ public class FileDisplayActivity extends HookActivity
         editText.setTextColor(fontColor);
         ImageView searchClose = searchView.findViewById(android.support.v7.appcompat.R.id.search_close_btn);
         searchClose.setColorFilter(ThemeUtils.fontColor());
-
         // populate list of menu items to show/hide when drawer is opened/closed
         mDrawerMenuItemstoShowHideList = new ArrayList<>(4);
         mDrawerMenuItemstoShowHideList.add(menu.findItem(R.id.action_sort));
@@ -741,12 +741,13 @@ public class FileDisplayActivity extends HookActivity
 
             @Override
             public void onGlobalLayout() {
-
                 int currentVisibility = mSearchEditFrame.getVisibility();
 
                 if (currentVisibility != oldVisibility) {
                     if (currentVisibility == View.VISIBLE) {
                         setDrawerIndicatorEnabled(false);
+                    } else if (currentVisibility == View.GONE){
+                        showFiles(false);
                     }
 
                     oldVisibility = currentVisibility;
@@ -1037,6 +1038,7 @@ public class FileDisplayActivity extends HookActivity
             searchView.setQuery("", true);
             searchView.onActionViewCollapsed();
             setDrawerIndicatorEnabled(isDrawerIndicatorAvailable());
+            //this.showFiles(false);
         } else if (isDrawerOpen && isFabOpen) {
             // close drawer first
             super.onBackPressed();
@@ -1048,7 +1050,6 @@ public class FileDisplayActivity extends HookActivity
             getListOfFilesFragment().getFabMain().collapse();
         } else {
             // all closed
-
             //if PreviewImageActivity called this activity and mDualPane==false  then calls PreviewImageActivity again
             if ((getIntent().getAction() != null && getIntent().getAction().equalsIgnoreCase(ACTION_DETAILS)) && !mDualPane) {
                 getIntent().setAction(null);
