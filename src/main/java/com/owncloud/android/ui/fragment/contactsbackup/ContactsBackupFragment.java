@@ -25,6 +25,7 @@ import android.accounts.Account;
 import android.app.DatePickerDialog;
 import android.content.DialogInterface;
 import android.content.Intent;
+import android.graphics.Color;
 import android.graphics.PorterDuff;
 import android.os.AsyncTask;
 import android.os.Bundle;
@@ -166,10 +167,9 @@ public class ContactsBackupFragment extends FileFragment implements DatePickerDi
         contactsDatePickerBtn.getBackground().setColorFilter(accentColor, PorterDuff.Mode.SRC_ATOP);
         view.findViewById(R.id.contacts_backup_now).getBackground()
                 .setColorFilter(accentColor, PorterDuff.Mode.SRC_ATOP);
-
         AppCompatButton chooseDate = view.findViewById(R.id.contacts_datepicker);
         chooseDate.getBackground().setColorFilter(accentColor, PorterDuff.Mode.SRC_ATOP);
-        chooseDate.setTextColor(ThemeUtils.fontColor());
+        //chooseDate.setTextColor(ThemeUtils.fontColor());
 
         return view;
     }

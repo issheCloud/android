@@ -219,7 +219,7 @@ public class ContactListFragment extends FileFragment {
             @Override
             public void onClick(View v) {
 
-                if (checkAndAskForContactsWritePermission()) {
+                if (checkAndAskForContactsReadAndWritePermission()) {
                     getAccountForImport();
                 }
             }
@@ -363,6 +363,7 @@ public class ContactListFragment extends FileFragment {
                 .build()
                 .schedule();
 
+        // 提示“导入已经排期，稍后将开始”
         Snackbar.make(recyclerView, R.string.contacts_preferences_import_scheduled, Snackbar.LENGTH_LONG).show();
 
         Handler handler = new Handler();
@@ -378,12 +379,14 @@ public class ContactListFragment extends FileFragment {
         }, 1750);
     }
 
+    // 提供给用户选择保存的账号
     private void getAccountForImport() {
         final ArrayList<ContactAccount> accounts = new ArrayList<>();
 
         // add local one
-        accounts.add(new ContactAccount("Local contacts", null, null));
+        accounts.add(new ContactAccount(getContext().getResources().getString(R.string.local_contacts), null, null));
 
+        /*  -- 改为默认只给一个
         Cursor cursor = null;
         try {
             cursor = getContext().getContentResolver().query(ContactsContract.RawContacts.CONTENT_URI,
@@ -413,7 +416,7 @@ public class ContactListFragment extends FileFragment {
                 cursor.close();
             }
         }
-
+        */
         if (accounts.size() == 1) {
             importContacts(accounts.get(0));
         } else {
@@ -438,6 +441,46 @@ public class ContactListFragment extends FileFragment {
         } else {
             return true;
         }
+    }
+
+    private boolean checkAndAskForContactsReadAndWritePermission() {
+        final ContactsPreferenceActivity contactsPreferenceActivity = (ContactsPreferenceActivity) getActivity();
+
+        // check permissions
+        if (PermissionUtil.checkSelfPermission(contactsPreferenceActivity, Manifest.permission.READ_CONTACTS)
+                && PermissionUtil.checkSelfPermission(contactsPreferenceActivity, Manifest.permission.WRITE_CONTACTS)) {
+            return true;
+        }
+
+        // Check if we should show an explanation
+        if (PermissionUtil.shouldShowRequestPermissionRationale(contactsPreferenceActivity,
+                android.Manifest.permission.READ_CONTACTS)
+                || PermissionUtil.shouldShowRequestPermissionRationale(contactsPreferenceActivity,
+                android.Manifest.permission.WRITE_CONTACTS)) {
+            // Show explanation to the user and then request permission
+            if (getView() != null) {
+                Snackbar snackbar = Snackbar.make(getView(), R.string.contacts_rw_permission, Snackbar.LENGTH_LONG)
+                        .setAction(R.string.common_ok, new View.OnClickListener() {
+                            @Override
+                            public void onClick(View v) {
+                                requestPermissions(new String[]{Manifest.permission.READ_CONTACTS,
+                                                Manifest.permission.WRITE_CONTACTS},
+                                        PermissionUtil.PERMISSIONS_WRITE_EXTERNAL_STORAGE);
+                            }
+                        });
+                //.show();
+                ThemeUtils.colorSnackbar(contactsPreferenceActivity, snackbar);
+                snackbar.show();
+            } else {
+                Toast.makeText(getContext(), R.string.contacts_rw_permission, Toast.LENGTH_LONG).show();
+            }
+        } else {
+            // No explanation needed, request the permission.
+            requestPermissions(new String[]{Manifest.permission.READ_CONTACTS,
+                            Manifest.permission.WRITE_CONTACTS},
+                    PermissionUtil.PERMISSIONS_WRITE_EXTERNAL_STORAGE);
+        }
+        return false;
     }
 
     @Override

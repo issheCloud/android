@@ -557,7 +557,8 @@
     <string name="contacts_backup_button">现在备份</string>
     <string name="contacts_automatic_backup">自动备份</string>
     <string name="contacts_last_backup">上次备份</string>
-    <string name="contacts_read_permission">需要更改阅读列表的权限</string>
+    <string name="contacts_read_permission">需要获取读取联系人列表的权限</string>
+    <string name="contacts_rw_permission">需要获取读写联系人列表的权限</string>
     <string name="contaclist_restore_selected">恢复选中的联系人</string>
     <string name="contactlist_account_chooser_title">选择导入帐户</string>
     <string name="contactlist_no_permission">未授予权限，没有文件被导入</string>

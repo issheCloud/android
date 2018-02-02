@@ -103,6 +103,11 @@
 		<item name="android:textColor">@color/secondary_button_text_color</item>
 	</style>
 
+	<style name="Button.White" parent="Base.Widget.AppCompat.Button">
+		<item name="colorButtonNormal">@color/appcompat_button_background_color</item>
+		<item name="android:textColor">@color/appcompat_button_text_color</item>
+	</style>
+
 	<style name="Button.Primary" parent="Button">
 		<item name="colorButtonNormal">@color/primary_button_background_color</item>
 		<item name="android:textColor">@color/primary_button_text_color</item>
