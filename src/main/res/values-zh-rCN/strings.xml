@@ -140,6 +140,7 @@
     <string name="uploader_upload_failed_content_single">无法上传 %1$s</string>
     <string name="uploads_view_title">上传</string>
     <string name="uploads_view_group_current_uploads">当前</string>
+    <string name="uploads_view_group_failed_uploads">上传失败，等待重新上传</string>
     <string name="uploads_view_group_finished_uploads">已上传</string>
     <string name="uploads_view_upload_status_succeeded">已完成</string>
     <string name="uploads_view_upload_status_cancelled">已取消</string>

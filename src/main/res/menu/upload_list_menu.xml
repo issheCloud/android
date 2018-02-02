@@ -33,6 +33,7 @@
             android:id="@+id/action_clear_successfull_uploads"
             android:title="@string/action_clear_successful_uploads"/>
     </group>
+    <!--
     <group
         android:id="@+id/upload_list_force_scan"
         android:checkableBehavior="none">

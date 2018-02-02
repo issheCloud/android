@@ -232,21 +232,21 @@ public class UploadListActivity extends FileActivity implements UploadListFragme
                 uploadListFragment.updateUploads();
                 break;
 
-            case R.id.action_force_rescan:
-                PersistableBundleCompat persistableBundleCompat = new PersistableBundleCompat();
-                persistableBundleCompat.putBoolean(FilesSyncJob.OVERRIDE_POWER_SAVING, true);
-                new JobRequest.Builder(FilesSyncJob.TAG)
-                        .setExact(1_000L)
-                        .setUpdateCurrent(false)
-                        .setExtras(persistableBundleCompat)
-                        .build()
-                        .schedule();
-                
-                if (mMenu != null) {
-                    mMenu.removeItem(R.id.action_force_rescan);
-                }
+            //ase R.id.action_force_rescan:
+            //   PersistableBundleCompat persistableBundleCompat = new PersistableBundleCompat();
+            //   persistableBundleCompat.putBoolean(FilesSyncJob.OVERRIDE_POWER_SAVING, true);
+            //   new JobRequest.Builder(FilesSyncJob.TAG)
+            //           .setExact(1_000L)
+            //           .setUpdateCurrent(false)
+            //           .setExtras(persistableBundleCompat)
+            //           .build()
+            //           .schedule();
+            //
+            //   if (mMenu != null) {
+            //       mMenu.removeItem(R.id.action_force_rescan);
+            //   }
 
-                break;
+            //   break;
 
             default:
                 retval = super.onOptionsItemSelected(item);
