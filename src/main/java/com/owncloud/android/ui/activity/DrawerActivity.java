@@ -683,6 +683,8 @@ public abstract class DrawerActivity extends ToolbarActivity implements DisplayU
     private void repopulateAccountList(ArrayList<Account> accounts) {
         // remove all accounts from list
         mNavigationView.getMenu().removeGroup(R.id.drawer_menu_accounts);
+        mNavigationView.getMenu().removeItem(R.id.drawer_menu_account_add);
+        mNavigationView.getMenu().removeItem(R.id.drawer_menu_account_manage);
 
         // add all accounts to list
         for (Account account: accounts) {
