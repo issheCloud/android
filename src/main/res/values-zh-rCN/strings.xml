@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
-    <string name="about_android">%1$s</string>
+    <string name="about_android">%1$s for Android ©2018 TB Co.,Ltd.</string>
     <string name="about_version">版本 %1$s</string>
     <string name="actionbar_sync">刷新帐户</string>
     <string name="actionbar_upload">上传</string>
@@ -561,7 +561,7 @@
     <string name="contaclist_restore_selected">恢复选中的联系人</string>
     <string name="contactlist_account_chooser_title">选择导入帐户</string>
     <string name="contactlist_no_permission">未授予权限，没有文件被导入</string>
-    <string name="contacts_preference_choose_date">选择时间</string>
+    <string name="contacts_preference_choose_date">选择恢复时间</string>
     <string name="contacts_preference_backup_never">永远不</string>
     <string name="contacts_preferences_no_file_found">没有文件被发现</string>
     <string name="contacts_preferences_something_strange_happened">无法找到末次备份</string>
@@ -649,4 +649,5 @@
     <string name="success_to_obtain_permission">权限获取成功</string>
     <string name="need_permission_prompts">由于Microcloud需要获取相机权限；否则，您将无法正常使用扫一扫功能</string>
     <string name="contacts_backup_folder">/.联系人备份</string>
+    <string name="local_contacts">本地联系人</string>
     </resources>

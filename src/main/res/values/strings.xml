@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
-    <string name="about_android">%1$s Android app</string>
+    <string name="about_android">%1$s for Android ©2018 TB Co.,Ltd.</string>
     <string name="about_version">version %1$s</string>
     <string name="actionbar_sync">Refresh account</string>
     <string name="actionbar_upload">Upload</string>
@@ -766,5 +766,5 @@
     <string name="apply_to_turn_on_camera_permissions">Allows use of the camera.</string>
     <string name="success_to_obtain_permission">Obtain permission success.</string>
     <string name="need_permission_prompts">If you do not turn on the camera, you will not be able to use the sweep function normally.</string>
-
+    <string name="local_contacts">Local contacts</string>
 </resources>
