@@ -42,4 +42,5 @@
             android:id="@+id/action_force_rescan"
             android:title="@string/action_force_rescan"/>
     </group>
+    -->
 </menu>
