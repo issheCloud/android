@@ -46,11 +46,15 @@ import com.owncloud.android.ui.fragment.FileFragment;
 import com.owncloud.android.utils.AnalyticsUtils;
 import com.owncloud.android.utils.MimeTypeUtil;
 
-import org.mozilla.universalchardet.ReaderFactory;
+//import org.mozilla.universalchardet.ReaderFactory;
+import org.mozilla.universalchardet.UnicodeBOMInputStream;
+import org.mozilla.universalchardet.UniversalDetector;
 
 import java.io.BufferedWriter;
 import java.io.File;
+import java.io.FileInputStream;
 import java.io.IOException;
+import java.io.InputStreamReader;
 import java.io.Reader;
 import java.io.StringWriter;
 import java.lang.ref.WeakReference;
@@ -97,8 +101,7 @@ public class PreviewTextFragment extends FileFragment {
      * {@inheritDoc}
      */
     @Override
-    public View onCreateView(LayoutInflater inflater, ViewGroup container,
-                             Bundle savedInstanceState) {
+    public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
         super.onCreateView(inflater, container, savedInstanceState);
         Log_OC.e(TAG, "onCreateView");
 
@@ -191,6 +194,21 @@ public class PreviewTextFragment extends FileFragment {
         mTextLoadTask.execute(getFile().getStoragePath());
     }
 
+    /**由于ReaderFactory自带的createReaderFromFile只对GBK和UTF编码有效
+     * 所以重新编写该方法，当不是UTF类型时，都用GBK格式，这样就不会出现乱码
+    */
+    public static Reader createReaderFromFile(File file) throws IOException {
+        String detectedEncoding = UniversalDetector.detectCharset(file);
+        Charset cs = Charset.forName("GBK");
+        if (detectedEncoding != null && detectedEncoding.contains("UTF")) {
+            cs = Charset.forName(detectedEncoding);
+        }
+        if (!cs.toString().contains("UTF")) {
+            return new InputStreamReader(new FileInputStream(file), cs);
+        }
+        return new InputStreamReader(new UnicodeBOMInputStream(new FileInputStream(file)), cs);
+    }
+
 
     /**
      * Reads the file to preview and shows its contents. Too critical to be anonymous.
@@ -221,7 +239,7 @@ public class PreviewTextFragment extends FileFragment {
 
             try {
                 File file = new File(location);
-                reader = ReaderFactory.createReaderFromFile(file, Charset.forName("GBK"));
+                reader = createReaderFromFile(file);
                 scanner = new Scanner(reader);
 
                 while (scanner.hasNextLine()) {
