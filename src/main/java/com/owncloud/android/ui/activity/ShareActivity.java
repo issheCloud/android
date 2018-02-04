@@ -66,6 +66,7 @@ public class ShareActivity extends FileActivity implements ShareFragmentListener
     private static final String TAG_SEARCH_FRAGMENT = "SEARCH_USER_AND_GROUPS_FRAGMENT";
     private static final String TAG_EDIT_SHARE_FRAGMENT = "EDIT_SHARE_FRAGMENT";
     private static final String TAG_PUBLIC_LINK = "PUBLIC_LINK";
+    private final static String RESHARE_PERMISSION = "RM";
 
     /// Tags for dialog fragments
     private static final String FTAG_CHOOSER_DIALOG = "CHOOSER_DIALOG";
@@ -131,13 +132,43 @@ public class ShareActivity extends FileActivity implements ShareFragmentListener
     private void doShareWith(String shareeName, String dataAuthority) {
 
         ShareType shareType = UsersAndGroupsSearchProvider.getShareType(dataAuthority);
-
         getFileOperationsHelper().shareFileWithSharee(
                 getFile(),
                 shareeName,
                 shareType,
-                getAppropiatePermissions(shareType)
+                mGetAppropiatePermissions(shareType, getFile().getPermissions())
         );
+    }
+
+
+    /*
+     * 获取权限，用来代替getAppropiatePermissions
+     */
+    private int mGetAppropiatePermissions(ShareType shareType, String permissions){
+        // check if the Share is FEDERATED
+        boolean isFederated = ShareType.FEDERATED.equals(shareType);
+
+        if (getFile().isSharedWithMe()) {
+            return OCShare.READ_PERMISSION_FLAG;    // minimum permissions
+
+        } else if (isFederated) {
+            OwnCloudVersion serverVersion = com.owncloud.android.authentication.AccountUtils.
+                    getServerVersion(getAccount());
+            if (serverVersion != null && serverVersion.isNotReshareableFederatedSupported()) {
+                return (getFile().isFolder() ? OCShare.FEDERATED_PERMISSIONS_FOR_FOLDER_AFTER_OC9 :
+                        OCShare.FEDERATED_PERMISSIONS_FOR_FILE_AFTER_OC9);
+            } else {
+                return (getFile().isFolder() ? OCShare.FEDERATED_PERMISSIONS_FOR_FOLDER_UP_TO_OC9 :
+                        OCShare.FEDERATED_PERMISSIONS_FOR_FILE_UP_TO_OC9);
+            }
+        } else {
+            // 解决不能分享“只设置分享权限”的组文件夹的问题
+            if (permissions.equals(RESHARE_PERMISSION)) {
+                return OCShare.READ_PERMISSION_FLAG + OCShare.SHARE_PERMISSION_FLAG;
+            }
+            return (getFile().isFolder() ? OCShare.MAXIMUM_PERMISSIONS_FOR_FOLDER :
+                    OCShare.MAXIMUM_PERMISSIONS_FOR_FILE);
+        }
     }
 
     private int getAppropiatePermissions(ShareType shareType) {
