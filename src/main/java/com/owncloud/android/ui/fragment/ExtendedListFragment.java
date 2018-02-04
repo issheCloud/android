@@ -242,7 +242,9 @@ public class ExtendedListFragment extends Fragment
                 handler.postDelayed(new Runnable() {
                     @Override
                     public void run() {
-                        if (getActivity() != null && !(getActivity() instanceof FolderPickerActivity)) {
+                        if (getActivity() instanceof UploadFilesActivity) {
+                            setFabEnabled(false);
+                        } else if (getActivity() != null && !(getActivity() instanceof FolderPickerActivity)) {
                             setFabEnabled(!hasFocus);
 
                             boolean searchSupported = AccountUtils.hasSearchSupport(AccountUtils.
