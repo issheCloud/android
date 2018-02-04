@@ -527,7 +527,7 @@
 
     <!-- Welcome to Nc intro features -->
     <string name="welcome_feature_1_title">给你所有的数据一个安全的家</string>
-    <string name="welcome_feature_1_text">访问，共享和保护您的文件在家里和工作</string>
+    <string name="welcome_feature_1_text">可以在家里和工作环境安全的访问你的文件</string>
 
     <string name="welcome_feature_2_title">多用户</string>
     <string name="welcome_feature_2_text">联接你所有的云</string>
