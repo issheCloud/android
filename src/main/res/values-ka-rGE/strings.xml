@@ -583,6 +583,13 @@
     <string name="welcome_feature_3_title">ავტო-ატვირთვა</string>
     <string name="welcome_feature_3_text">იქონიეთ თქვენი სურათები დაცულად</string>
 
+    <string name="whats_new_end_to_end_encryption_title">End to end შიფრაცია</string>
+    <string name="whats_new_end_to_end_encryption_content">აირჩიეთ დასაშიფრი დირექტორიები, მოაწყვეთ ნებისმიერი კლიენტით. მარტივად დაამატეთ ახალი მოწყობილობები 12 სიტყვიანი პას-ფრაზით.</string>
+    <string name="whats_new_resized_images_title">ეკრანზე მორგებული სურათები</string>
+    <string name="whats_new_resized_images_content">საწყისი მოწყობით ნაჩვენებია პატარა ვერსიები, ეს ეკონომიას უწევს მონაცემებს და კარგად მუშაობს გაგზავნისა და გაზიარებისთვის. შეგიძლიათ ჩამოტვირთოთ მთელი ფაილიც.</string>
+    <string name="whats_new_ipv6_title">IPv6 მხარდაჭერა</string>
+    <string name="whats_new_ipv6_content">ახლა მუშაობს კარგად სერვერებთან, რომლებიც მხარს უჭერენ IPv6-ს და ამავე დროს მოიხმარენ IPv4-საც.</string>
+
     <string name="whats_new_skip">გამოტოვება</string>
 
     <string name="fingerprint_scan_finger">გთხოვთ დაასკანიროთ თქვენი თითი</string>
@@ -709,6 +716,8 @@
     <string name="notification_channel_media_description">მუსიკის დამკვრელის პროგრესი</string>
     <string name="notification_channel_file_sync_name">ფაილების სინქ.</string>
     <string name="notification_channel_file_sync_description">აჩვენებს ფაილების სინქ. პროგრესს და შედეგებს</string>
+    <string name="notification_channel_file_observer_name">ფაილ ობზერვერი</string>
+    <string name="notification_channel_file_observer_description">მონიტორინგი ფაილების ცვლილებაზე</string>
   
     <string name="account_not_found">ანგარიში ვერ იქნა ნაპოვნი!</string>
 
@@ -740,4 +749,5 @@
     <string name="end_to_end_encryption_dialog_close">დახურვა</string>
     <string name="end_to_end_encryption_storing_keys">გასაღებების შენახვა</string>
     <string name="copy_move_to_encrypted_folder_not_supported">ამჟამად კოპირება/გადატანა დაშიფრულ დირექტორიაში არაა მხარდაჭერილი.</string>
-    </resources>
+    <string name="untrusted_domain">წვდომა არასანდო დომენით. დამატებითი ინფორმაციებისთვის გთხოვთ იხილოთ დოკუმენტაცია.</string>
+</resources>

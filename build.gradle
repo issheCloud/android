@@ -78,8 +78,8 @@ android {
 
         multiDexEnabled true
 
-        versionCode = 30000002
-        versionName = "3.0.0 RC2"
+        versionCode = 30000003
+        versionName = "v2.0.19.20180205204141"
 
         // adapt structure from Eclipse to Gradle/Android Studio expectations;
         // see http://tools.android.com/tech-docs/new-build-system/user-guide#TOC-Configuring-the-Structure
@@ -103,8 +103,8 @@ android {
             versionDev {
                 applicationId "com.microcloud.android"
                 dimension "default"
-                versionCode 20180125
-                versionName "20180125"
+                versionCode 20180131
+                versionName "20180131"
             }
         }
     }
@@ -184,7 +184,7 @@ dependencies {
     // dependencies for app building
     implementation 'com.android.support:multidex:1.0.2'
 //    implementation project('nextcloud-android-library')
-    implementation 'com.github.nextcloud:android-library:1.0.36'
+    implementation 'com.github.nextcloud:android-library:1.0.37'
     versionDevImplementation 'com.github.nextcloud:android-library:master-SNAPSHOT' // use always latest master
     implementation "com.android.support:support-v4:${supportLibraryVersion}"
     implementation "com.android.support:design:${supportLibraryVersion}"
@@ -196,9 +196,9 @@ dependencies {
     implementation 'com.github.albfernandez:juniversalchardet:v2.0.0'
     implementation 'com.google.code.findbugs:annotations:2.0.1'
     implementation 'commons-io:commons-io:2.5'
-    implementation 'com.github.evernote:android-job:v1.2.0'
-    implementation 'com.jakewharton:butterknife:8.5.1'
-    annotationProcessor 'com.jakewharton:butterknife-compiler:8.5.1'
+    implementation 'com.github.evernote:android-job:v1.2.2'
+    implementation 'com.jakewharton:butterknife:8.8.1'
+    annotationProcessor 'com.jakewharton:butterknife-compiler:8.8.1'
     implementation 'org.greenrobot:eventbus:3.0.0'
     implementation 'com.googlecode.ez-vcard:ez-vcard:0.10.2'
     implementation 'org.lukhnos:nnio:0.2'
@@ -210,8 +210,8 @@ dependencies {
     // implementation "com.google.android.gms:play-services-base:${googleLibraryVersion}"
     // implementation "com.google.android.gms:play-services-gcm:${googleLibraryVersion}"
     // implementation "com.google.firebase:firebase-core:${googleLibraryVersion}"
-    implementation 'org.parceler:parceler-api:1.1.6'
-    annotationProcessor 'org.parceler:parceler:1.1.6'
+    implementation 'org.parceler:parceler-api:1.1.9'
+    annotationProcessor 'org.parceler:parceler:1.1.9'
     implementation 'com.github.bumptech.glide:glide:3.7.0'
     implementation 'com.caverock:androidsvg:1.2.1'
     implementation "com.android.support:support-annotations:${supportLibraryVersion}"
