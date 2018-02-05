@@ -156,20 +156,26 @@ public class FileMenuFilter {
         }
 
         // RENAME
-        if (!isSingleSelection() || synchronizing || containsEncryptedFile() || containsEncryptedFolder()) {
+        if (!isSingleSelection() || synchronizing || containsEncryptedFile()
+                || containsEncryptedFolder() || isGroupFolder()) {
             toHide.add(R.id.action_rename_file);
-
         } else {
             toShow.add(R.id.action_rename_file);
         }
 
-        // MOVE & COPY
+        //  COPY
         if (mFiles.isEmpty() || synchronizing || containsEncryptedFile() || containsEncryptedFolder()) {
-            toHide.add(R.id.action_move);
             toHide.add(R.id.action_copy);
         } else {
-            toShow.add(R.id.action_move);
             toShow.add(R.id.action_copy);
+        }
+
+        // MOVE
+        if (mFiles.isEmpty() || synchronizing || containsEncryptedFile()
+                || containsEncryptedFolder() || isGroupFolder()) {
+            toHide.add(R.id.action_move);
+        } else {
+            toShow.add(R.id.action_move);
         }
 
         // REMOVE
@@ -448,5 +454,14 @@ public class FileMenuFilter {
             }
         }
         return true;
+    }
+
+    private boolean isGroupFolder() {
+        for (OCFile file : mFiles) {
+            if (file.isGroupFolder()) {
+                return true;
+            }
+        }
+        return false;
     }
 }
