@@ -713,6 +713,7 @@ public class FileDisplayActivity extends HookActivity
                     setDrawerIndicatorEnabled(isDrawerIndicatorAvailable()); // order matters
                     getSupportActionBar().setDisplayHomeAsUpEnabled(true);
                     mDrawerToggle.syncState();
+                    showFiles(MainApp.isOnlyOnDevice());
                 } else {
                     searchView.post(new Runnable() {
                         @Override
@@ -736,8 +737,6 @@ public class FileDisplayActivity extends HookActivity
                 if (currentVisibility != oldVisibility) {
                     if (currentVisibility == View.VISIBLE) {
                         setDrawerIndicatorEnabled(false);
-                    } else if (currentVisibility == View.GONE){
-                        showFiles(false);
                     }
 
                     oldVisibility = currentVisibility;
@@ -1033,7 +1032,7 @@ public class FileDisplayActivity extends HookActivity
             searchView.setQuery("", true);
             searchView.onActionViewCollapsed();
             setDrawerIndicatorEnabled(isDrawerIndicatorAvailable());
-            //this.showFiles(false);
+            showFiles(MainApp.isOnlyOnDevice());
         } else if (isDrawerOpen && isFabOpen) {
             // close drawer first
             super.onBackPressed();
