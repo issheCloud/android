@@ -655,4 +655,6 @@
     <string name="need_permission_prompts">由于Microcloud需要获取相机权限；否则，您将无法正常使用扫一扫功能</string>
     <string name="contacts_backup_folder">/.联系人备份</string>
     <string name="local_contacts">本地联系人</string>
+    <string name="userinfo_no_info_headline">没有设置个人信息</string>
+    <string name="userinfo_no_info_text">添加名称、图片和联系方式在到你的个人资料页面。</string>
     </resources>
