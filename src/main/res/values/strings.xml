@@ -633,6 +633,7 @@
     <string name="contacts_automatic_backup">Automatic backup</string>
     <string name="contacts_last_backup">Last backup</string>
     <string name="contacts_read_permission">Permission to read contact list needed</string>
+    <string name="contacts_rw_permission">Permission to read and write contact list needed</string>
     <string name="contaclist_restore_selected">Restore selected contacts</string>
     <string name="contactlist_account_chooser_title">Choose account to import</string>
     <string name="contactlist_no_permission">No permission given, nothing imported.</string>
