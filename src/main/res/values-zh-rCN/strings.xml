@@ -638,6 +638,8 @@
     <string name="notification_channel_media_description">音乐播放器进度</string>
     <string name="notification_channel_file_sync_name">文件同步</string>
     <string name="notification_channel_file_sync_description">显示文件同步进度和结果</string>
+    <string name="notification_channel_file_observer_name">文件监控</string>
+    <string name="notification_channel_file_observer_description">监控文件是否发生变化</string>
   
     <string name="account_not_found">账户未找到</string>
 
