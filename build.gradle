@@ -50,6 +50,11 @@ repositories {
     }
 }
 
+String getDate() {
+    Date date = new Date()
+    return date.format("yyyyMMddhhmmss", TimeZone.getTimeZone("UTC"))
+}
+
 android {
     lintOptions {
         abortOnError false
@@ -79,7 +84,7 @@ android {
         multiDexEnabled true
 
         versionCode = 30000003
-        versionName = "v2.0.19.20180205204141"
+        versionName = "v2.0.19.${getDate()}"
 
         // adapt structure from Eclipse to Gradle/Android Studio expectations;
         // see http://tools.android.com/tech-docs/new-build-system/user-guide#TOC-Configuring-the-Structure
