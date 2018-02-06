@@ -58,6 +58,7 @@ public class OCFile implements Parcelable, Comparable<OCFile> {
     private final static String PERMISSION_SHARED_WITH_ME = "S";    // TODO move to better location
     private final static String PERMISSION_CAN_RESHARE = "R";
     private final static String PERMISSION_GROUP_FOLDER = "M";
+    private final static String PERMISSION_CAN_CREATE = "CK";
 
     public static final String PATH_SEPARATOR = "/";
     public static final String ROOT_PATH = PATH_SEPARATOR;
@@ -772,5 +773,10 @@ public class OCFile implements Parcelable, Comparable<OCFile> {
     public boolean isGroupFolder() {
         String permissions = getPermissions();
         return permissions.contains(PERMISSION_GROUP_FOLDER) && getParentRemotePath().equals("/");
+    }
+
+    public boolean canCreate() {
+        String permissions = getPermissions();
+        return permissions.contains(PERMISSION_CAN_CREATE);
     }
 }

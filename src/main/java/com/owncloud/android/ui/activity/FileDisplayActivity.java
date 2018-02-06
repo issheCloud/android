@@ -1016,6 +1016,11 @@ public class FileDisplayActivity extends HookActivity
         boolean isDrawerOpen = isDrawerOpen();
         boolean isSearchOpen = isSearchOpen();
 
+        OCFile parentFolder = getStorageManager().getFileById(getCurrentDir().getParentId());
+        if (parentFolder != null && parentFolder.canCreate()) {
+            getListOfFilesFragment().getFabMain().setVisibility(View.VISIBLE);
+        }
+
         /*
          * BackPressed priority/hierarchy:
          *    1. close search view if opened

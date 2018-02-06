@@ -882,6 +882,9 @@ public class OCFileListFragment extends ExtendedListFragment implements OCFileLi
 
         if (file != null) {
             if (file.isFolder()) {
+                if (!file.canCreate()) {
+                    getFabMain().setVisibility(View.GONE);
+                }
                 if (file.isEncrypted()) {
                     // check if API >= 19
                     if (android.os.Build.VERSION.SDK_INT < android.os.Build.VERSION_CODES.KITKAT) {
