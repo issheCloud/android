@@ -193,6 +193,10 @@ public class EditShareFragment extends Fragment {
                 shareSwitch.setVisibility(View.GONE);
             }
 
+            if (!getResources().getBoolean(R.bool.permissions_reshare_enabled)){
+                shareSwitch.setVisibility(View.GONE);
+            }
+
             shareSwitch.setChecked((sharePermissions & OCShare.SHARE_PERMISSION_FLAG) > 0);
 
             SwitchCompat switchCompat = (SwitchCompat) editShareView.findViewById(R.id.canEditSwitch);
