@@ -640,8 +640,6 @@
     <string name="notification_channel_file_sync_description">显示文件同步进度和结果</string>
   
     <string name="account_not_found">账户未找到</string>
-    <string name="userinfo_no_info_headline">还没填写个人信息</string>
-    <string name="userinfo_no_info_text">在个人资料页面上可添加姓名，照片和联系方式等信息。</string>
 
     <string name="screenshot_01_gridView">为你的数据找一个安全的家</string>
     <string name="screenshot_02_listView">方便的浏览和共享你的文件</string>
