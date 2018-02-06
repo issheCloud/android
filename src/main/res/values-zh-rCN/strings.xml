@@ -425,7 +425,7 @@
     <string name="share_dialog_title">共享</string>
     <string name="share_file">分享 %1$s</string>
     <string name="share_with_user_section_title">分享给其他用户或组</string>
-    <string name="share_no_users">目前没有文件向您分享。</string>
+    <string name="share_no_users">目前该文件没有被分享。</string>
     <string name="share_add_user_or_group">添加用户或组</string>
     <string name="share_via_link_section_title">分享链接</string>
     <string name="share_via_link_expiration_date_label">设置过期日期</string>
@@ -640,6 +640,8 @@
     <string name="notification_channel_file_sync_description">显示文件同步进度和结果</string>
   
     <string name="account_not_found">账户未找到</string>
+    <string name="userinfo_no_info_headline">还没填写个人信息</string>
+    <string name="userinfo_no_info_text">在个人资料页面上可添加姓名，照片和联系方式等信息。</string>
 
     <string name="screenshot_01_gridView">为你的数据找一个安全的家</string>
     <string name="screenshot_02_listView">方便的浏览和共享你的文件</string>
