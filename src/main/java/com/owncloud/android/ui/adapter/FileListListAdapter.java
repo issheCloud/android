@@ -334,11 +334,9 @@ public class FileListListAdapter extends BaseAdapter {
                 hideOverflowMenuIcon(view, viewType);
             } else {
                 checkBoxV.setVisibility(View.GONE);
-
                 if (mHideItemOptions) {
                     ImageView sharedIconView = view.findViewById(R.id.sharedIcon);
                     sharedIconView.setVisibility(View.GONE);
-
                     ImageView overflowIndicatorView = view.findViewById(R.id.overflow_menu);
                     overflowIndicatorView.setVisibility(View.GONE);
                 } else {
@@ -425,6 +423,10 @@ public class FileListListAdapter extends BaseAdapter {
 
     private void showShareIcon(View view, OCFile file) {
         ImageView sharedIconV = view.findViewById(R.id.sharedIcon);
+        if (!file.canReshare()){
+            sharedIconV.setVisibility(View.GONE);
+            return;
+        }
         sharedIconV.setVisibility(View.VISIBLE);
         if (file.isSharedWithSharee() || file.isSharedWithMe()) {
             sharedIconV.setImageResource(R.drawable.shared_via_users);
