@@ -194,8 +194,8 @@ public class PreviewTextFragment extends FileFragment {
         mTextLoadTask.execute(getFile().getStoragePath());
     }
 
-    /**由于ReaderFactory自带的createReaderFromFile只对GBK和UTF编码有效
-     * 所以重新编写该方法，当不是UTF类型时，都用GBK格式，这样就不会出现乱码
+    /**Because ReaderFactory's own createReaderFromFile only GBK and UTF encoding effective
+     * so rewrite the method, when not UTF type, use GBK format, so there will be no garbled
     */
     public static Reader createReaderFromFile(File file) throws IOException {
         String detectedEncoding = UniversalDetector.detectCharset(file);
