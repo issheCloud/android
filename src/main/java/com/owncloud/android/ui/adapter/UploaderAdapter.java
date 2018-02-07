@@ -36,6 +36,7 @@ import com.owncloud.android.datamodel.OCFile;
 import com.owncloud.android.datamodel.ThumbnailsCacheManager;
 import com.owncloud.android.datamodel.ThumbnailsCacheManager.AsyncThumbnailDrawable;
 import com.owncloud.android.utils.DisplayUtils;
+import com.owncloud.android.utils.MimeType;
 import com.owncloud.android.utils.MimeTypeUtil;
 
 import java.util.HashMap;
@@ -92,8 +93,9 @@ public class UploaderAdapter extends SimpleAdapter {
         }
 
         if (file.isFolder()) {
-            fileIcon.setImageDrawable(MimeTypeUtil.getFolderTypeIcon(file.isSharedWithMe() ||
-                    file.isSharedWithSharee(), file.isSharedViaLink(), file.isEncrypted(), mAccount));
+            //fileIcon.setImageDrawable(MimeTypeUtil.getFolderTypeIcon(file.isSharedWithMe() ||
+            //        file.isSharedWithSharee(), file.isSharedViaLink(), file.isEncrypted(), mAccount));
+            fileIcon.setImageDrawable(MimeTypeUtil.mGetFolderTypeIcon(mAccount, file));
         } else {
             // get Thumbnail if file is image
             if (MimeTypeUtil.isImage(file) && file.getRemoteId() != null) {

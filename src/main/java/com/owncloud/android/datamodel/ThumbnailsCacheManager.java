@@ -684,7 +684,7 @@ public class ThumbnailsCacheManager {
                 } else {
                     if (mFile != null) {
                         if (mFile.isDirectory()) {
-                            imageView.setImageDrawable(MimeTypeUtil.getDefaultFolderIcon());
+                            imageView.setImageDrawable(MimeTypeUtil.mGetDefaultFolderIcon());
                         } else {
                             if (MimeTypeUtil.isVideo(mFile)) {
                                 imageView.setImageBitmap(ThumbnailsCacheManager.mDefaultVideo);

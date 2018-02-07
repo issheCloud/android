@@ -162,7 +162,30 @@ public class MimeTypeUtil {
         return getFolderTypeIcon(false, false, false);
     }
 
+    public static Drawable mGetFolderTypeIcon(Account account, OCFile file) {
+        int drawableId = R.drawable.folder;
 
+        if (file != null){
+            if (file.isSharedViaLink()) {
+                drawableId = R.drawable.folder_public;
+            } else if (file.isGroupFolder() && !file.isSharedWithMe()){
+                drawableId = R.drawable.group_folder;
+            } else if (file.isSharedWithMe() || file.isSharedWithSharee()) {
+                drawableId = R.drawable.shared_with_me_folder;
+            } else if (file.isEncrypted()) {
+                drawableId = R.drawable.ic_list_encrypted_folder;
+            }
+        }
+        return ThemeUtils.tintDrawable(drawableId, ThemeUtils.elementColor(account));
+    }
+
+    public static Drawable mGetFolderTypeIcon(OCFile file) {
+        return mGetFolderTypeIcon(null, file);
+    }
+
+    public static Drawable mGetDefaultFolderIcon() {
+        return mGetFolderTypeIcon(null);
+    }
     /**
      * Returns a single MIME type of all the possible, by inspection of the file extension, and taking
      * into account the MIME types known by ownCloud first.
