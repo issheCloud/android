@@ -22,6 +22,7 @@
 package com.owncloud.android.ui.fragment;
 
 import android.accounts.Account;
+import android.content.Context;
 import android.graphics.Bitmap;
 import android.os.Bundle;
 import android.support.design.widget.Snackbar;
@@ -48,9 +49,14 @@ import com.owncloud.android.datamodel.ThumbnailsCacheManager;
 import com.owncloud.android.files.FileMenuFilter;
 import com.owncloud.android.files.services.FileDownloader.FileDownloaderBinder;
 import com.owncloud.android.files.services.FileUploader.FileUploaderBinder;
+import com.owncloud.android.lib.common.OwnCloudAccount;
+import com.owncloud.android.lib.common.OwnCloudClient;
+import com.owncloud.android.lib.common.OwnCloudClientManagerFactory;
 import com.owncloud.android.lib.common.network.OnDatatransferProgressListener;
+import com.owncloud.android.lib.common.operations.RemoteOperationResult;
 import com.owncloud.android.lib.common.utils.Log_OC;
 import com.owncloud.android.lib.resources.shares.OCShare;
+import com.owncloud.android.operations.GetShareWithMeOperation;
 import com.owncloud.android.ui.activity.FileActivity;
 import com.owncloud.android.ui.activity.FileDisplayActivity;
 import com.owncloud.android.ui.adapter.UserListAdapter;
@@ -60,6 +66,9 @@ import com.owncloud.android.utils.AnalyticsUtils;
 import com.owncloud.android.utils.DisplayUtils;
 import com.owncloud.android.utils.MimeTypeUtil;
 import com.owncloud.android.utils.ThemeUtils;
+
+import org.json.JSONArray;
+import org.json.JSONObject;
 
 import java.lang.ref.WeakReference;
 import java.util.ArrayList;
@@ -88,6 +97,8 @@ public class FileDetailFragment extends FileFragment implements OnClickListener,
     private static final String ARG_ACCOUNT = "ACCOUNT";
 
     private static final String SCREEN_NAME = "File details";
+
+    private String displayname_file_owner = null;
 
     /**
      * Public factory method to create new FileDetailFragment instances.
@@ -140,6 +151,40 @@ public class FileDetailFragment extends FileFragment implements OnClickListener,
 
         setFile(getArguments().getParcelable(ARG_FILE));
         mAccount = getArguments().getParcelable(ARG_ACCOUNT);
+
+        if(getFile().isSharedWithMe()) {
+            Thread t = new Thread(() -> {
+                FileDataStorageManager fileDataStorageManager = ((FileActivity) getActivity()).getStorageManager();
+                RemoteOperationResult result;
+                GetShareWithMeOperation operation;
+                try {
+                    final Account currentAccount = com.owncloud.android.authentication.AccountUtils.getCurrentOwnCloudAccount(MainApp.getAppContext());
+                    final Context context = MainApp.getAppContext();
+                    String remotepath = getFile().getRemotePath();
+                    operation = new GetShareWithMeOperation(remotepath, true);
+                    OwnCloudAccount ocAccount = new OwnCloudAccount(currentAccount, context);
+                    OwnCloudClient client = OwnCloudClientManagerFactory.getDefaultSingleton().getClientFor(ocAccount, context);
+                    result = operation.execute(client, fileDataStorageManager);
+                } catch (Exception e) {
+                    result = new RemoteOperationResult(e);
+                    Log_OC.e(TAG, "Exception while getting shares", e);
+                }
+
+                if (result.isSuccess() && result.getData() != null) {
+                    final ArrayList<Object> data = result.getData();
+                    final JSONArray respDatas = (JSONArray) data.get(0);
+                    final JSONObject respData = respDatas.optJSONObject(0);
+                    displayname_file_owner = respData.optString("displayname_file_owner", "");
+                }
+            });
+
+            t.start();
+            try {
+                t.join(2000);
+            } catch (InterruptedException e) {
+                e.printStackTrace();
+            }
+        }
 
         if (savedInstanceState != null) {
             setFile(savedInstanceState.getParcelable(FileActivity.EXTRA_FILE));
@@ -458,6 +503,7 @@ public class FileDetailFragment extends FileFragment implements OnClickListener,
             favSwitch.setChecked(file.isAvailableOffline());
 
             setShareByLinkInfo(file.isSharedViaLink());
+            setShareWithMe();
 
             setShareWithUserInfo();
 
@@ -589,6 +635,18 @@ public class FileDetailFragment extends FileFragment implements OnClickListener,
         ImageView linkIcon = getView().findViewById(R.id.fdShareLinkIcon);
         if (linkIcon != null) {
             linkIcon.setVisibility(isShareByLink ? View.VISIBLE : View.GONE);
+        }
+    }
+
+    //update share with me
+    private void setShareWithMe() {
+        TextView tv = getView().findViewById(R.id.fdSharefdSharewithme);
+        if (tv != null && displayname_file_owner != null && !displayname_file_owner.isEmpty()) {
+            tv.setText(getContext().getString(R.string.filedetails_share_with_me_enable, displayname_file_owner));
+            tv.setVisibility(View.VISIBLE);
+        }
+        else{
+            tv.setVisibility(View.GONE);
         }
     }
 

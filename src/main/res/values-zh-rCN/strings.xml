@@ -447,6 +447,7 @@
 
     <string name="filedetails_share_link_enable">共享链接已启用</string>
     <string name="filedetails_share_link_disable">链接不共享</string>
+    <string name="filedetails_share_with_me_enable">%1$s 分享给您</string>
     <string name="filedetails_share_users_with_access">有权访问的用户和组</string>
     <string name="share_privilege_can_share">可共享</string>
     <string name="share_privilege_can_edit">可编辑</string>
