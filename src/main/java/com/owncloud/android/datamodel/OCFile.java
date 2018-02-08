@@ -772,11 +772,11 @@ public class OCFile implements Parcelable, Comparable<OCFile> {
 
     public boolean isGroupFolder() {
         String permissions = getPermissions();
-        return permissions.contains(PERMISSION_GROUP_FOLDER) && getParentRemotePath().equals("/");
+        return permissions != null && permissions.contains(PERMISSION_GROUP_FOLDER) && getParentRemotePath().equals("/");
     }
 
     public boolean canCreate() {
         String permissions = getPermissions();
-        return permissions.contains(PERMISSION_CAN_CREATE);
+        return permissions != null && permissions.contains(PERMISSION_CAN_CREATE);
     }
 }
