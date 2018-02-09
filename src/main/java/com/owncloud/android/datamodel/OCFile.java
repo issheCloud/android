@@ -777,6 +777,7 @@ public class OCFile implements Parcelable, Comparable<OCFile> {
 
     public boolean canCreate() {
         String permissions = getPermissions();
-        return permissions != null && permissions.contains(PERMISSION_CAN_CREATE);
+
+        return permissions != null ? permissions.contains(PERMISSION_CAN_CREATE) : true;
     }
 }
