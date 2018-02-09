@@ -173,8 +173,8 @@ public class FileDetailFragment extends FileFragment implements OnClickListener,
                 if (result.isSuccess() && result.getData() != null) {
                     final ArrayList<Object> data = result.getData();
                     final JSONArray respDatas = (JSONArray) data.get(0);
-                    final JSONObject respData = respDatas.optJSONObject(0);
-                    displayname_file_owner = respData.optString("displayname_file_owner", "");
+                    final JSONObject respData = (respDatas == null) ? null : respDatas.optJSONObject(0);
+                    displayname_file_owner = (respData == null) ? "" : respData.optString("displayname_file_owner", "");
                 }
             });
 
